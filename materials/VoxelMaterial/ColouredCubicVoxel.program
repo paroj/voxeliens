@@ -1,0 +1,52 @@
+//We're having to specify two fragment programs here - one for Direct3D
+//and one for OpenGL. This is because in shader code we need to know if we
+//are in OpenGL as the computed normal points in the opposite direction. 
+//Relevant thread: http://www.ogre3d.org/forums/viewtopic.php?f=1&t=40084
+
+fragment_program ColouredCubicVoxelFPAdvanced_D3D hlsl
+{
+    source ColouredCubicVoxel.hlsl
+    entry_point ColouredCubicVoxelFPAdvanced
+	target ps_3_0
+	
+	compile_arguments -DOPENGL=0
+
+	default_params
+    {
+		param_named_auto cameraPosition camera_position 
+		param_named_auto texViewProj texture_viewproj_matrix
+    }
+}
+
+fragment_program ColouredCubicVoxelFPAdvanced_OGL glsl
+{
+    source ColouredCubicVoxel.glsl
+    entry_point main
+	
+	default_params
+    {
+		param_named_auto cameraPosition camera_position 
+		param_named_auto texViewProj texture_viewproj_matrix
+    }
+}
+
+//fragment_program ColouredCubicVoxelFPAdvanced_OGL cg
+//{
+//    source ColouredCubicVoxel.cg
+//    entry_point ColouredCubicVoxelFPAdvanced
+//	profiles fp40 fp30 fp20 arbfp1
+//	
+//	compile_arguments -DOPENGL=1
+//
+//	default_params
+//   {
+//		param_named_auto cameraPosition camera_position 
+//		param_named_auto texViewProj texture_viewproj_matrix
+//    }
+//}
+
+fragment_program ColouredCubicVoxelFPAdvanced unified
+{
+   delegate ColouredCubicVoxelFPAdvanced_D3D
+   delegate ColouredCubicVoxelFPAdvanced_OGL
+}

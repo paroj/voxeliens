@@ -1,0 +1,29 @@
+import * from "ColouredCubicVoxel.material"
+
+material FireballMaterial : ColouredCubicVoxelMaterial
+{
+	technique
+	{				
+		pass
+		{		
+			scene_blend alpha_blend			
+			depth_write off
+			
+			// Vertex program reference
+			vertex_program_ref FireballVP
+			{
+			}
+			
+			// Fragment program - Override to add emissive and remove dynamic
+			fragment_program_ref ColouredCubicVoxelFPAdvanced
+			{
+				param_named_auto lightPositionArray light_position_array 0
+				param_named_auto lightDiffuseColourArray light_diffuse_colour_array 0
+				param_named_auto lightAttenuationArray light_attenuation_array 0
+				param_named lightEmissiveColour float4 1.0 1.0 1.0 1.0
+				
+				param_named colorMap int 0
+			}
+		}
+	}
+}

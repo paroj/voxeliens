@@ -1,0 +1,238 @@
+float4 computeShadowIntensity(float4x4 texViewProj, sampler2D shadowMap, sampler3D noiseMap, float4 inWorldPosition, float4 inClipPosition)
+{
+	//Shadowing
+	float4 shadowUV = mul(texViewProj, inWorldPosition);
+	
+	float bias = 0.000001;	
+	int noOfSamples = 8; //Even number as we take two at a time. Not greater than twice the noise texture size.
+	
+	float2 noiseTextureSize = float2(64.0, 1.0 / 64.0); //Size and inverse	
+	float2 screenPos = inClipPosition.xy * noiseTextureSize.yy;
+	
+	float samplesTaken = 0.0f;	
+	float shadowIntensity = 0.0;
+	for(int ct = 0; ct < noOfSamples/2; ct++)
+	{
+		float centerOnZero = 0.5;
+		float offsetScale = 0.05;
+		float4 offset = tex3D(noiseMap, float3(screenPos, noiseTextureSize.y * ct)) - centerOnZero;
+		offset *= offsetScale;
+		
+		float sample = 0.0f;
+		sample = tex2D(shadowMap, shadowUV.xy + float2(offset.x, offset.y)).x;
+		shadowIntensity += (sample + bias > shadowUV.z) ? 1.0f : 0.0f;
+		sample = tex2D(shadowMap, shadowUV.xy + float2(offset.z, offset.w)).x;
+		shadowIntensity += (sample + bias > shadowUV.z) ? 1.0f : 0.0f;
+		samplesTaken += 2.0f;
+	}    
+    shadowIntensity /= samplesTaken;
+	
+	return shadowIntensity;
+}
+
+void buildCoordinateSystem(float3 worldPosition, out float2 texCoords, out float3 tangent, out float3 binormal, out float3 normal)
+{
+	//Compute normals from derivitive instrutions
+	normal = cross(ddy(worldPosition), ddx(worldPosition));
+	normal = normalize(normal);
+	
+	//Need to initialise to something, otherwise 45
+	//degree angles (fireballs) never get texcoords.
+	texCoords = float2(0.5, 0.5);
+	
+	//For some reason, in OpenGL the computed normals face the other way.
+	#if OPENGL
+		normal *= -1.0f;
+	#endif
+	
+	//Small offset, because our cubes are centered on integer position rather than 
+	float3 worldPositionOffset = worldPosition + float3(0.5, 0.5, 0.5);
+	
+	//Maybe we can improve on this with a x1x1 cubemap lookup texture, to convert
+	//normal to face index? Then a look up table from face index to other details?
+	if(normal.x > 0.9)
+	{
+		texCoords = float2(-worldPositionOffset.z, worldPositionOffset.y);
+		tangent = float3(0.0, 0.0,-1.0);
+		binormal = float3(0.0, 1.0,0.0);
+	}
+	else if(normal.y > 0.9)
+	{
+		texCoords = float2(worldPositionOffset.x, -worldPositionOffset.z);
+		tangent = float3(1.0, 0.0, 0.0);
+		binormal = float3(0.0, 0.0, -1.0);
+	}
+	else if(normal.z > 0.9)
+	{
+		texCoords = float2(worldPositionOffset.x, worldPositionOffset.y);
+		tangent = float3(1.0, 0.0, 0.0);
+		binormal = float3(0.0, 1.0, 0.0);
+	}	
+	else if(normal.x < -0.9)
+	{
+		texCoords = float2(worldPositionOffset.z, worldPositionOffset.y);
+		tangent = float3(0.0, 0.0,1.0);
+		binormal = float3(0.0, 1.0,0.0);
+	}	
+	else if(normal.y < -0.9)
+	{
+		texCoords = float2(worldPositionOffset.x, worldPositionOffset.z);
+		tangent = float3(1.0, 0.0, 0.0);
+		binormal = float3(0.0, 0.0, 1.0);
+	}
+	else if(normal.z < -0.9)
+	{
+		texCoords = float2(-worldPositionOffset.x, worldPositionOffset.y);
+		tangent = float3(-1.0, 0.0, 0.0);
+		binormal = float3(0.0, 1.0, 0.0);
+	}
+}
+
+float3 computeAmbientLightColour(float4 inWorldPosition, sampler3D ambientMap)
+{
+	
+	float4 ambientLightColour = float4(0.4, 0.4, 0.4, 1.0);
+	float ambientVal = tex3D(ambientMap, (inWorldPosition.xyz + float3(0.499f, 0.499f, 0.499f)) / float3(128.0f, 32.0f, 128.0f));
+	float3 finalAmbientColour = ambientVal * ambientLightColour.xyz; //Height for ambient occlusion
+	
+	return finalAmbientColour;
+}
+
+float4 computeSingleDynamicLight(float4 lightPosition, float4 lightColour, float4 inWorldPosition, float3 perturbedWorldNormal, float4 cameraPosition)
+{
+	//Material properties (not light)
+	float Kd = 1.0;
+	float shininess = 128;
+	float Ks = 1.0;
+
+	float3 lightDir = normalize(lightPosition.xyz -  (inWorldPosition.xyz * lightPosition.w));
+	float3 V = normalize(cameraPosition.xyz - inWorldPosition.xyz);
+	float3 H = normalize(lightDir + V);
+	
+	float4 litValue = lit(dot(lightDir, perturbedWorldNormal), dot(perturbedWorldNormal, H), shininess);	
+	float4 diffuseLightColour = Kd * lightColour * litValue.y;
+	float4 specularLightColour = Ks * lightColour * litValue.z;
+	
+	return diffuseLightColour + specularLightColour;
+}
+
+float4 computeDirectionalLight(float4 lightPosition, float4 lightColour, float4 inWorldPosition, float3 perturbedWorldNormal, float4 cameraPosition, float4 attenuation)
+{
+	float4 diffuseLightColour = computeSingleDynamicLight(lightPosition, lightColour, inWorldPosition, perturbedWorldNormal, cameraPosition);
+	
+	//We apply attenuation to the directional light, even though it is set to one. Otherwise Cg appears to 
+	//optimise away this element of the attenuation array which then causes compile errors with the Ogre material.
+	diffuseLightColour *= attenuation.z;
+	return diffuseLightColour;
+}
+
+float4 computePointLight(float4 lightPosition, float4 lightColour, float4 inWorldPosition, float3 perturbedWorldNormal, float4 cameraPosition, float4 attenuation)
+{
+	float4 diffuseLightColour = computeSingleDynamicLight(lightPosition, lightColour, inWorldPosition, perturbedWorldNormal, cameraPosition);
+	
+	//Apply attentuation to point light.
+	float pointLightDistance = length(inWorldPosition.xyz - lightPosition);
+	diffuseLightColour *= (1.0f / (pointLightDistance * pointLightDistance * attenuation.z));
+	
+	return diffuseLightColour;
+}
+
+float4 computeDynamicLight(float4 inWorldPosition, float4 cameraPosition, float3 perturbedWorldNormal, float4 lightPositionArray[5], float4 lightDiffuseColourArray[5], float4 lightAttenuationArray[5], float4x4 texViewProj, sampler2D shadowMap, sampler3D noiseMap, float4 inClipPosition)
+{
+	
+	float4 dynamicLightColour = float4(0.0,0.0,0.0,0.0);
+	
+	float4 diffuseLightColour = computeDirectionalLight(lightPositionArray[0], lightDiffuseColourArray[0], inWorldPosition, perturbedWorldNormal, cameraPosition, lightAttenuationArray[0]);	
+	float4 shadowIntensity = computeShadowIntensity(texViewProj, shadowMap, noiseMap, inWorldPosition, inClipPosition);
+	dynamicLightColour += diffuseLightColour * shadowIntensity;
+	
+	for(int lightIndex = 1; lightIndex < 5; lightIndex++)
+	{		
+		float4 diffuseLightColour = computePointLight(lightPositionArray[lightIndex], lightDiffuseColourArray[lightIndex], inWorldPosition, perturbedWorldNormal, cameraPosition, lightAttenuationArray[lightIndex]);		
+		dynamicLightColour += diffuseLightColour;
+	}
+	
+	return dynamicLightColour;
+}
+
+void ColouredCubicVoxelFPAdvanced(
+	float4 inLocalPosition	: TEXCOORD0,
+	float4 inWorldPosition	: TEXCOORD1,
+	float4 inClipPosition : WPOS, //Requires PS 3.0?
+	float4 colour : COLOR,
+	
+	uniform float4 lightPositionArray[5],
+	uniform float4 lightDiffuseColourArray[5],
+	uniform float4 lightAttenuationArray[5],
+	uniform float4 lightEmissiveColour,
+	uniform float4 cameraPosition,
+	
+	uniform float4x4 texViewProj,
+
+	uniform sampler2D normalMap : TEXUNIT1,
+	uniform sampler3D noiseMap : TEXUNIT2,
+	uniform samplerCUBE skyboxMap : TEXUNIT3,
+    uniform sampler2D shadowMap : TEXUNIT4,
+	uniform sampler3D ambientMap : TEXUNIT5,
+	
+	out float4 result		: COLOR)
+{	
+	float2 texCoords;	
+	float3 tangent;
+	float3 binormal;
+	float3 worldNormal;
+
+	buildCoordinateSystem(inLocalPosition.xyz, texCoords, tangent, binormal, worldNormal);
+
+	float3x3 rotation = float3x3(tangent, binormal, worldNormal);
+	
+	rotation = transpose(rotation); //Inversion?
+	
+	float4 perturbedNormalAndHeight = tex2D(normalMap, texCoords);
+	perturbedNormalAndHeight.xyz -= 0.5f; //Move range from 0.0 - 1.0 to -0.5 - 0.5
+	perturbedNormalAndHeight.xyz = normalize(perturbedNormalAndHeight); //Moves to range -1.0 - 1.0. 
+	
+	perturbedNormalAndHeight.xyz = mul(rotation, perturbedNormalAndHeight.xyz);
+	
+	
+	//Apply some noise. Tiny offset required as geometry lies exactly on texel boundaries. 32.0f is size of texture.
+	float noiseVal = tex3D(noiseMap, ((inLocalPosition.xyz + float3(0.5f,0.5f,0.5f)) - (worldNormal.xyz * 0.1f)) / 64.0f).a;
+	noiseVal -= 0.5f; //So some are positive and some negative.
+	float noiseScaleFactor = 0.3;
+	noiseVal *= noiseScaleFactor;
+	colour += float4(noiseVal, noiseVal, noiseVal, 0.0f);
+	
+	float4 dynamicLightColour = computeDynamicLight(inWorldPosition, cameraPosition, perturbedNormalAndHeight.xyz, lightPositionArray, lightDiffuseColourArray, lightAttenuationArray, texViewProj, shadowMap, noiseMap, inClipPosition);
+	
+	
+	float3 finalAmbientColour = computeAmbientLightColour(inWorldPosition, ambientMap);
+	finalAmbientColour *= perturbedNormalAndHeight.a;
+	
+	//Reflection
+	float reflectionFactor = 0.2f;
+	float reflectionMip = 5.0f;
+	float3 viewDir = normalize(inWorldPosition.xyz - cameraPosition.xyz);
+	float3 reflectedDir = reflect(viewDir, perturbedNormalAndHeight.xyz);	
+	//Note the flip along z when we sample the cube map. There appears to be a bug in Ogre skybox rendering which
+	//causes it to be flipped along the z-axis. See here: http://www.ogre3d.org/forums/viewtopic.php?f=2&t=53078.
+	//We just flip the z axis when ever we sample the skybox texture to make sure we match with this.
+	float3 reflectionLightColor = reflectionFactor * texCUBElod(skyboxMap, float4(reflectedDir * float3(1.0f, 1.0f, -1.0f), reflectionMip)).rgb; 
+	
+	//Shadowing
+	//float4 shadowIntensity = computeShadowIntensity(texViewProj, shadowMap, noiseMap, inWorldPosition, inClipPosition);
+	
+	//float4 height = ambientOcclusionFromHeightMap(worldNormal, inLocalPosition, heightMap);
+	
+	lightEmissiveColour.xyz *= perturbedNormalAndHeight.a;
+	
+	float3 finalLight = (dynamicLightColour.xyz) + finalAmbientColour + lightEmissiveColour.xyz /*+ reflectionLightColor*/;
+	
+	finalLight = saturate(finalLight);
+	
+	//Apply lighting to the base colour
+	colour.xyz *= finalLight;
+	
+	//height = float4(1.0f, 1.0f, 1.0f, 1.0f);
+	
+	result = colour;
+}

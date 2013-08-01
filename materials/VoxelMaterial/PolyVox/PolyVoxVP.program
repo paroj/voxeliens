@@ -1,0 +1,34 @@
+////////////////////////////////////////////////////////////////////////////////
+// Advanced Version
+////////////////////////////////////////////////////////////////////////////////
+vertex_program PolyVoxVPAdvanced_D3D hlsl
+{
+    source PolyVoxVP.hlsl
+    entry_point PolyVoxVPAdvanced
+	uses_vertex_texture_fetch true
+    target vs_3_0
+
+    default_params
+    {
+        param_named_auto world world_matrix
+		param_named_auto viewProj viewproj_matrix
+    }
+}
+
+vertex_program PolyVoxVPAdvanced_OGL glsl
+{
+	source PolyVoxVP.glsl
+	entry_point main
+	
+	default_params
+	{
+		param_named_auto viewProj viewproj_matrix
+		param_named_auto world world_matrix
+	}
+}
+
+vertex_program PolyVoxVPAdvanced unified
+{
+   delegate PolyVoxVPAdvanced_D3D
+   delegate PolyVoxVPAdvanced_OGL
+}

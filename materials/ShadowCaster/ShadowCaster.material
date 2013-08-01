@@ -1,0 +1,15 @@
+material ShadowCasterMaterial
+{
+    technique
+    {
+        pass 
+        {
+            vertex_program_ref ShadowCasterVP
+            {
+            }
+            fragment_program_ref ShadowCasterFP
+            {
+            }
+        }
+    }
+}

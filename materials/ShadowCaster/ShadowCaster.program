@@ -1,0 +1,58 @@
+vertex_program ShadowCasterVP_D3D hlsl
+{
+    source ShadowCaster.hlsl
+    entry_point ShadowCasterVP
+    target vs_3_0
+
+    default_params
+    {
+        param_named_auto worldViewProj worldviewproj_matrix
+        param_named_auto texelOffsets texel_offsets
+    }
+}
+
+fragment_program ShadowCasterFP_D3D hlsl
+{
+    source ShadowCaster.hlsl
+    entry_point ShadowCasterFP
+    target ps_3_0
+
+    default_params
+    {
+    }
+}
+
+vertex_program ShadowCasterVP_OGL glsl
+{
+    source ShadowCasterVP.glsl
+    entry_point main
+
+    default_params
+    {
+        param_named_auto worldViewProj worldviewproj_matrix
+        param_named_auto texelOffsets texel_offsets
+    }
+}
+
+fragment_program ShadowCasterFP_OGL glsl
+{
+    source ShadowCasterFP.glsl
+    entry_point main
+
+    default_params
+    {
+    }
+}
+
+vertex_program ShadowCasterVP unified
+{
+   delegate ShadowCasterVP_D3D
+   delegate ShadowCasterVP_OGL
+}
+
+fragment_program ShadowCasterFP unified
+{
+   delegate ShadowCasterFP_D3D
+   delegate ShadowCasterFP_OGL
+}
+

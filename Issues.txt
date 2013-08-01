@@ -1,0 +1,20 @@
+Make difficulty settings more different? Multipliers of 0.7, 1.2, 1.8?
+Make game harder?
+Store difficulty multiplier in settings?
+Add volume control?
+Seperate 'lock rotation' and 'move relative to...'
+Allow sliding along voxels (it's easy to get stuck).
+Add respawning sound.
+Logs require admin privilidges.
+Lock when switching to full screen?
+Multimonitor issue
+AMD Crossfire issue.
+Installer admin issues - can't write logs and settings!
+Missing voxel terrain on old GPUs
+Everything black on Vista machine.
+
+Attempted but failed
+--------------------
+Add screenshot feature? - Crashed and can't intercept print screen
+Add flashing underscore/arrow to highscore screen - Too hard/error prone.
+Use gamepad

@@ -1,0 +1,30 @@
+Development
+-----------
+David Williams and Matthew Williams
+
+Music
+-----
+Background music is from the album 'Resistor Anthems' by Eric Skiff, licensed under the Creative Commons Attribution 3.0 Unported license. Eric's webpage is available at www.ericskiff.com, and the full terms of the license are included in the 'audio/music/' folder of this distribution.
+
+Sound effects
+-------------
+All sound effects were obtained from FreeSound (http://www.freesound.org). The following sounds are used by Voxeliens:
+
+    DSGETPOW.WAV by wildweasel -- http://www.freesound.org/people/wildweasel/sounds/39017/
+    click 1 d.wav by TicTacShutUp -- http://www.freesound.org/people/TicTacShutUp/sounds/406/
+    granulazer.wav by NoiseCollector -- http://www.freesound.org/people/NoiseCollector/sounds/5636/
+    Lazer_01_HIT_03.wav by Koops -- http://www.freesound.org/people/Koops/sounds/12504/
+    whatever.wav by aust_paul -- http://www.freesound.org/people/aust_paul/sounds/30937/
+    btn107.wav by junggle -- http://www.freesound.org/people/junggle/sounds/28917/
+    Missile Strike.wav by digifishmusic -- http://www.freesound.org/people/digifishmusic/sounds/42024/
+    laser_weapon_02.wav by cormi -- http://www.freesound.org/people/cormi/sounds/93979/
+
+Artwork
+-------
+The background skybox was used with permission of Alex Peterson (http://alexcpeterson.com), who created it as a sample for his program 'Spacescape'. It is licensed here under the Creative Commons Attribution-ShareAlike 3.0 license.
+
+Software and libraries used
+---------------------------
+The rendering engine of Voxeliens is built upon Ogre3D, an open souce graphics engine which offers a lot of power and flexibility. Nokia's Qt toolkit was used for most other aspects of the game including audio and input handling.
+
+We were also dependent upon an number of open source asset creation tools including Blender, the Gimp, Sproxel, Audacity, VirtualDub and MeshLab. These all performed superbly at their respective tasks.

@@ -1,0 +1,21 @@
+Release Candidate 1
+-------------------
+- Settings and highscore are now stored in 'AppData' instead of current folder.
+- Updated manual.
+
+Beta 3
+------
+- Replace 'escape' dialog with Ogre overlay.
+- Changed default control system.
+- Increased difficulty slightly.
+- Highscore table now accepts numbers and space and '.'
+
+Beta 2
+------
+- Fixed bug whereby losing you last life just as you killed the last Voxelien would go to both 'game over' and 'level complete' screens.
+- Initialised all highscores to zero.
+- Limits on camera rotation now only apply in 'relative to world' input mode.
+
+Beta 1
+------
+First beta so no listed changes.

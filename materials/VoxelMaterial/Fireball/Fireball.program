@@ -1,0 +1,31 @@
+vertex_program FireballVP_D3D hlsl
+{
+    source FireballVP.hlsl
+    entry_point FireballVP
+	uses_vertex_texture_fetch true
+    target vs_3_0
+
+    default_params
+    {
+        param_named_auto world world_matrix
+		param_named_auto viewProj viewproj_matrix
+    }
+}
+
+vertex_program FireballVP_OGL glsl
+{
+	source FireballVP.glsl
+	entry_point main
+	
+	default_params
+	{
+		param_named_auto viewProj viewproj_matrix
+		param_named_auto world world_matrix
+	}
+}
+
+vertex_program FireballVP unified
+{
+   delegate FireballVP_D3D
+   delegate FireballVP_OGL
+}

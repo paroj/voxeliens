@@ -1,0 +1,53 @@
+material ColouredCubicVoxelMaterial
+{
+	technique
+	{				
+		pass
+		{		
+			// Fragment program
+			fragment_program_ref ColouredCubicVoxelFPAdvanced
+			{
+				param_named_auto lightPositionArray light_position_array 8
+				param_named_auto lightDiffuseColourArray light_diffuse_colour_array 8
+				param_named_auto lightAttenuationArray light_attenuation_array 8
+				param_named lightEmissiveColour float4 0 0 0 0
+				
+				param_named normalMap int 1
+				param_named noiseMap int 2
+				param_named shadowMap int 3
+			}	
+			
+			texture_unit
+			{
+				texture FireballGradient.png 2d PF_R8G8B8
+				tex_address_mode clamp
+				//filtering point point none
+				binding_type vertex
+			}
+
+			texture_unit
+			{
+				texture VoxelNormalAndHeightMap64.png 2d
+				filtering anisotropic
+				max_anisotropy 16
+			}			
+
+			texture_unit
+			{
+				texture NoiseRGBA64x64x64.dds 3d
+				filtering none
+			}	
+				
+			texture_unit
+            {
+                content_type shadow
+                tex_address_mode clamp
+                filtering none
+            }
+
+			//NOTE: Ambient texunit added here
+			
+			//polygon_mode wireframe
+		}
+	}
+}

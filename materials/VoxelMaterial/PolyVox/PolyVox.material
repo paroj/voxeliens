@@ -1,0 +1,15 @@
+import * from "ColouredCubicVoxel.material"
+
+material PolyVoxMaterial : ColouredCubicVoxelMaterial
+{
+	technique
+	{				
+		pass
+		{					
+			// Vertex program reference
+			vertex_program_ref PolyVoxVPAdvanced
+			{
+			}
+		}
+	}
+}
