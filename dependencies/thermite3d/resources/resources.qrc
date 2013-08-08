@@ -1,0 +1,15 @@
+<RCC>
+  <qresource>
+    <file>images/logos/DirectX9.png</file>
+    <file>images/logos/OpenGL.png</file>
+	<file>images/icons/dialog-error.svg</file>
+    <file>images/icons/dialog-information.svg</file>
+    <file>images/icons/dialog-warning.svg</file>
+    <file>images/icons/script-error.svg</file>
+	<file>images/icons/edit-clear-locationbar-rtl.svg</file>
+	<file>images/icons/dialog-error.png</file>
+    <file>images/icons/dialog-information.png</file>
+    <file>images/icons/dialog-warning.png</file>
+    <file>images/icons/script-error.png</file>
+  </qresource>
+</RCC>

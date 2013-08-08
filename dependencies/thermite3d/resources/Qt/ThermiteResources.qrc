@@ -1,0 +1,14 @@
+<RCC>
+  <qresource>
+	<file>animations/thermite_logo.mng</file>
+	
+    <file>images/MainMenuHeader.png</file>
+	<file>images/thermite_logo.svg</file>
+	
+	<file>icons/application-exit.svg</file>
+	<file>icons/document-open.svg</file>
+	<file>icons/go-previous.svg</file>
+	<file>icons/preferences-system.svg</file>
+	<file>icons/utilities-log-viewer.svg</file>
+  </qresource>
+</RCC>

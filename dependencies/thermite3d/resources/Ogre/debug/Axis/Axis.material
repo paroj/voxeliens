@@ -1,0 +1,49 @@
+material OriginMaterial
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.300000 0.300000 0.300000 1.000000
+			diffuse 0.700000 0.700000 0.700000 1.000000
+		}
+	}
+}
+
+material XAxisMaterial
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.300000 0.000000 0.000000 1.000000
+			diffuse 0.700000 0.000000 0.000000 1.000000
+		}
+	}
+}
+
+material YAxisMaterial
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.000000 0.300000 0.000000 1.000000
+			diffuse 0.000000 0.700000 0.000000 1.000000
+		}
+	}
+}
+
+material ZAxisMaterial
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.000000 0.000000 0.300000 1.000000
+			diffuse 0.000000 0.000000 0.700000 1.000000
+		}
+	}
+}
+
+

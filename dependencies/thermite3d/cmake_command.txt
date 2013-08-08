@@ -1,0 +1,3 @@
+cmake .. -DCMAKE_INSTALL_PREFIX=/home/matt/thermiteforvoxeliens -DCMAKE_PREFIX_PATH=/home/matt/polyvoxforvoxeliens -DOGRE_INCLUDE_DIRS=/home/matt/ogreforvoxeliens/include/OGRE -DOGRE_LIBRARIES=OgreMain -DOGRE_LIBRARY_DIRS=/home/matt/ogreforvoxeliens/lib
+
+cmake .. -DCMAKE_INSTALL_PREFIX=/home/matt/thermiteforvoxeliens -DCMAKE_PREFIX_PATH=/home/matt/polyvoxforvoxeliens -DOGRE_INCLUDE_DIRS=/home/matt/ogreforvoxeliens/include/OGRE -DOGRE_LIBRARIES=OgreMain -DOGRE_LIBRARY_DIRS=/home/matt/ogreforvoxeliens/lib -DQT_QMAKE_EXECUTABLE=/home/matt/qtforvoxeliens/bin/qmake
