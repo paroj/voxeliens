@@ -93,3 +93,8 @@ IF(UNIX)
 ENDIF()
 
 install(TARGETS Voxeliens RUNTIME DESTINATION bin)
+install(DIRECTORY ../audio DESTINATION resources)
+install(DIRECTORY ../materials DESTINATION resources)
+install(DIRECTORY ../models DESTINATION resources)
+install(DIRECTORY ../volumes DESTINATION resources)
+install(DIRECTORY ../voxels DESTINATION resources)
