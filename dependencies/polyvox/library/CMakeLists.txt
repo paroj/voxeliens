@@ -53,7 +53,7 @@ else(WIN32)
 endif(WIN32)
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/PolyVoxConfig.cmake.in ${CMAKE_CURRENT_BINARY_DIR}/PolyVoxConfig.cmake @ONLY)
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/PolyVoxConfig.cmake DESTINATION ${CONFIG_FILE_DIR} COMPONENT development)
+#install(FILES ${CMAKE_CURRENT_BINARY_DIR}/PolyVoxConfig.cmake DESTINATION ${CONFIG_FILE_DIR} COMPONENT development)
 
 if(DOXYGEN_FOUND)
 	#configure_file(${CMAKE_CURRENT_SOURCE_DIR}/polyvox.css ${CMAKE_CURRENT_BINARY_DIR}/polyvox.css)
@@ -79,13 +79,13 @@ if(DOXYGEN_FOUND)
 			COMMENT "Compiling API documentation to Qt Help format"
 		)
 		
-		install(FILES
-			${CMAKE_CURRENT_BINARY_DIR}/doc/qthelp/polyvox.qhc
-			${CMAKE_CURRENT_BINARY_DIR}/doc/qthelp/polyvox.qch
-			DESTINATION ${PolyVox_DOC_INSTALL_DIR}/qthelp
-			COMPONENT development
-			OPTIONAL
-		)
+		#install(FILES
+		#	${CMAKE_CURRENT_BINARY_DIR}/doc/qthelp/polyvox.qhc
+		#	${CMAKE_CURRENT_BINARY_DIR}/doc/qthelp/polyvox.qch
+		#	DESTINATION ${PolyVox_DOC_INSTALL_DIR}/qthelp
+		#	COMPONENT development
+		#	OPTIONAL
+		#)
 	endif()
 endif()
 

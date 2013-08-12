@@ -53,45 +53,45 @@ ENDIF()
 
 #Install
 IF(WIN32)
-	IF(BUILD_STATIC_LIBRARIES)
-		INSTALL(TARGETS PolyVoxUtilStatic
-			RUNTIME DESTINATION PolyVoxUtil/bin COMPONENT library
-			LIBRARY DESTINATION PolyVoxUtil/lib COMPONENT library
-			ARCHIVE DESTINATION PolyVoxUtil/lib COMPONENT library
-		)
-	ENDIF()
-	IF(BUILD_DYNAMIC_LIBRARIES)
-		INSTALL(TARGETS PolyVoxUtilDynamic
-			RUNTIME DESTINATION PolyVoxUtil/bin COMPONENT library
-			LIBRARY DESTINATION PolyVoxUtil/lib COMPONENT library
-			ARCHIVE DESTINATION PolyVoxUtil/lib COMPONENT library
-		)
-	ENDIF()
-
-	#Install the util header files.
-	INSTALL(DIRECTORY include DESTINATION PolyVoxUtil COMPONENT development PATTERN "*.svn*" EXCLUDE)
-	
-	#On windows, we also install the debug information. It's unfortunate that we have to hard-code
-	#the 'Debug' part of the path, but CMake doesn't seem to provide a way around this. The best I
-	#found was: http://www.cmake.org/pipermail/cmake/2007-October/016924.html (and it is a bit ugly).
-	INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/Debug/PolyVoxUtil.pdb DESTINATION PolyVoxUtil/lib CONFIGURATIONS Debug)
-	INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/RelWithDebInfo/PolyVoxUtil.pdb DESTINATION PolyVoxUtil/lib CONFIGURATIONS RelWithDebInfo)
+#	IF(BUILD_STATIC_LIBRARIES)
+#		INSTALL(TARGETS PolyVoxUtilStatic
+#			RUNTIME DESTINATION PolyVoxUtil/bin COMPONENT library
+#			LIBRARY DESTINATION PolyVoxUtil/lib COMPONENT library
+#			ARCHIVE DESTINATION PolyVoxUtil/lib COMPONENT library
+#		)
+#	ENDIF()
+#	IF(BUILD_DYNAMIC_LIBRARIES)
+#		INSTALL(TARGETS PolyVoxUtilDynamic
+#			RUNTIME DESTINATION PolyVoxUtil/bin COMPONENT library
+#			LIBRARY DESTINATION PolyVoxUtil/lib COMPONENT library
+#			ARCHIVE DESTINATION PolyVoxUtil/lib COMPONENT library
+#		)
+#	ENDIF()
+#
+#	#Install the util header files.
+#	INSTALL(DIRECTORY include DESTINATION PolyVoxUtil COMPONENT development PATTERN "*.svn*" EXCLUDE)
+#	
+#	#On windows, we also install the debug information. It's unfortunate that we have to hard-code
+#	#the 'Debug' part of the path, but CMake doesn't seem to provide a way around this. The best I
+#	#found was: http://www.cmake.org/pipermail/cmake/2007-October/016924.html (and it is a bit ugly).
+#	INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/Debug/PolyVoxUtil.pdb DESTINATION PolyVoxUtil/lib CONFIGURATIONS Debug)
+#	INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/RelWithDebInfo/PolyVoxUtil.pdb DESTINATION PolyVoxUtil/lib CONFIGURATIONS RelWithDebInfo)
 ELSE(WIN32)
-	IF(BUILD_STATIC_LIBRARIES)
-		INSTALL(TARGETS PolyVoxUtilStatic
-			RUNTIME DESTINATION bin COMPONENT library
-			LIBRARY DESTINATION lib COMPONENT library
-			ARCHIVE DESTINATION lib COMPONENT library
-		)
-	ENDIF()
-	IF(BUILD_DYNAMIC_LIBRARIES)
-		INSTALL(TARGETS PolyVoxUtilDynamic
-			RUNTIME DESTINATION bin COMPONENT library
-			LIBRARY DESTINATION lib COMPONENT library
-			ARCHIVE DESTINATION lib COMPONENT library
-		)
-	ENDIF()
-
-	#Install the util header files.
-	INSTALL(DIRECTORY include/ DESTINATION include/PolyVoxUtil COMPONENT development PATTERN "*.svn*" EXCLUDE)
+#IF(BUILD_STATIC_LIBRARIES)
+#		INSTALL(TARGETS PolyVoxUtilStatic
+#			RUNTIME DESTINATION bin COMPONENT library
+#			LIBRARY DESTINATION lib COMPONENT library
+#			ARCHIVE DESTINATION lib COMPONENT library
+#		)
+#	ENDIF()
+#	IF(BUILD_DYNAMIC_LIBRARIES)
+#		INSTALL(TARGETS PolyVoxUtilDynamic
+#			RUNTIME DESTINATION bin COMPONENT library
+#			LIBRARY DESTINATION lib COMPONENT library
+#			ARCHIVE DESTINATION lib COMPONENT library
+#		)
+#	ENDIF()
+#
+#	#Install the util header files.
+#	INSTALL(DIRECTORY include/ DESTINATION include/PolyVoxUtil COMPONENT development PATTERN "*.svn*" EXCLUDE)
 ENDIF(WIN32)

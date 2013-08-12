@@ -215,11 +215,11 @@ INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/plugins.cfg DESTINATION bin CONFIGURAT
 INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/plugins_d.cfg DESTINATION bin CONFIGURATIONS Debug)	
 
 #Install the resulting binaries
-INSTALL(TARGETS Thermite
-	RUNTIME DESTINATION bin
-	LIBRARY DESTINATION lib
-	ARCHIVE DESTINATION lib
-)
+#INSTALL(TARGETS Thermite
+#	RUNTIME DESTINATION bin
+#	LIBRARY DESTINATION lib
+#	ARCHIVE DESTINATION lib
+#)
 
 #IF (WIN32) #Windows
 #CONFIGURE_FILE(${OGRE_LIBRARY_DIRS}/OgreMain_d.dll ${CMAKE_CURRENT_BINARY_DIR}/debug/OgreMain_d.dll COPYONLY)
@@ -316,5 +316,5 @@ IF(WIN32)
 ENDIF(WIN32)
 
 #Lastly, we copy the core resources and set up the 'share' folder
-INSTALL(DIRECTORY resources/Ogre/debug DESTINATION ${CMAKE_INSTALL_PREFIX}/bin/resources/debug PATTERN "*.svn*" EXCLUDE) #this will exclude the .svn files
-INSTALL(DIRECTORY DESTINATION ${CMAKE_INSTALL_PREFIX}/share/thermite/apps)
+#INSTALL(DIRECTORY resources/Ogre/debug DESTINATION ${CMAKE_INSTALL_PREFIX}/bin/resources/debug PATTERN "*.svn*" EXCLUDE) #this will exclude the .svn files
+#INSTALL(DIRECTORY DESTINATION ${CMAKE_INSTALL_PREFIX}/share/thermite/apps)

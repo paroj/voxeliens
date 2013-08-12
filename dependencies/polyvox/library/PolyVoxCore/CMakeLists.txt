@@ -126,27 +126,27 @@ SET(PolyVoxCore_LIBRARY "PolyVoxCore")
 
 #Install
 IF(WIN32)
-	INSTALL(TARGETS PolyVoxCoreStatic
-		RUNTIME DESTINATION PolyVoxCore/bin COMPONENT library
-		LIBRARY DESTINATION PolyVoxCore/lib COMPONENT library
-		ARCHIVE DESTINATION PolyVoxCore/lib COMPONENT library
-	)
-
-	#Install the core header files, including the ones in the PolyVoxImpl subfolder.
-	INSTALL(DIRECTORY include DESTINATION PolyVoxCore COMPONENT development PATTERN "*.svn*" EXCLUDE)
-	
-	#On windows, we also install the debug information. It's unfortunate that we have to hard-code
-	#the 'Debug' part of the path, but CMake doesn't seem to provide a way around this. The best I
-	#found was: http://www.cmake.org/pipermail/cmake/2007-October/016924.html (and it is a bit ugly).
-	INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/Debug/PolyVoxCore.pdb DESTINATION PolyVoxCore/lib CONFIGURATIONS Debug)
-	INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/RelWithDebInfo/PolyVoxCore.pdb DESTINATION PolyVoxCore/lib CONFIGURATIONS RelWithDebInfo)
+#	INSTALL(TARGETS PolyVoxCoreStatic
+#		RUNTIME DESTINATION PolyVoxCore/bin COMPONENT library
+#		LIBRARY DESTINATION PolyVoxCore/lib COMPONENT library
+#		ARCHIVE DESTINATION PolyVoxCore/lib COMPONENT library
+#	)
+#
+#	#Install the core header files, including the ones in the PolyVoxImpl subfolder.
+#	INSTALL(DIRECTORY include DESTINATION PolyVoxCore COMPONENT development PATTERN "*.svn*" EXCLUDE)
+#	
+#	#On windows, we also install the debug information. It's unfortunate that we have to hard-code
+#	#the 'Debug' part of the path, but CMake doesn't seem to provide a way around this. The best I
+#	#found was: http://www.cmake.org/pipermail/cmake/2007-October/016924.html (and it is a bit ugly).
+#	INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/Debug/PolyVoxCore.pdb DESTINATION PolyVoxCore/lib CONFIGURATIONS Debug)
+#	INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/RelWithDebInfo/PolyVoxCore.pdb DESTINATION PolyVoxCore/lib CONFIGURATIONS RelWithDebInfo)
 ELSE(WIN32)
-	INSTALL(TARGETS PolyVoxCore
-		RUNTIME DESTINATION bin COMPONENT library
-		LIBRARY DESTINATION lib COMPONENT library
-		ARCHIVE DESTINATION lib COMPONENT library
-	)
-
-	#Install the core header files, including the ones in the PolyVoxImpl subfolder.
-	INSTALL(DIRECTORY include/ DESTINATION include/PolyVoxCore COMPONENT development PATTERN "*.svn*" EXCLUDE)
+#	INSTALL(TARGETS PolyVoxCore
+#		RUNTIME DESTINATION bin COMPONENT library
+#		LIBRARY DESTINATION lib COMPONENT library
+#		ARCHIVE DESTINATION lib COMPONENT library
+#	)
+#
+#	#Install the core header files, including the ones in the PolyVoxImpl subfolder.
+#	INSTALL(DIRECTORY include/ DESTINATION include/PolyVoxCore COMPONENT development PATTERN "*.svn*" EXCLUDE)
 ENDIF(WIN32)
