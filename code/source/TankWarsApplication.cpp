@@ -34,7 +34,7 @@ TankWarsApplication::TankWarsApplication(int & argc, char ** argv)
 	,mOgreWidget(0)
 {
 	//mResourcePath = "../../resources/";
-	mResourcePath = "./";
+	mResourcePath = "./resources/";
 	QDir pathToResources(mResourcePath);
 	if(!pathToResources.exists())
 	{
