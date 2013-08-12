@@ -410,7 +410,7 @@ void PlayScreen::initialiseLevelSettings()
 		mLevelSettings[level].enemyDropSpeed = 0.2f;
 		mLevelSettings[level].timeBetweenBombs = 5.0f;
 		mLevelSettings[level].validPowerUps.clear();
-		mLevelSettings[level].music = "Gameplay1.mp3";
+		mLevelSettings[level].music = "Gameplay1.ogg";
 		mLevelSettings[level].targetTimeInSeconds = 90;
 		mLevelSettings[level].startPosition = QVector3D(64.0f, 4.0f, 64.0f);
 		//mLevelSettings[level].terrainType = TerrainTypes::Rocky;
@@ -423,7 +423,7 @@ void PlayScreen::initialiseLevelSettings()
 	mLevelSettings[level].enemyDropSpeed = 0.2f;
 	mLevelSettings[level].timeBetweenBombs = 2.1f;
 	mLevelSettings[level].validPowerUps.append(PowerUpTypes::RapidFire);
-	mLevelSettings[level].music = "Gameplay1.mp3";
+	mLevelSettings[level].music = "Gameplay1.ogg";
 	mLevelSettings[level].targetTimeInSeconds = 180;
 	mLevelSettings[level].startPosition = QVector3D(64.0f, 4.0f, 96.0f);
 
@@ -433,7 +433,7 @@ void PlayScreen::initialiseLevelSettings()
 	mLevelSettings[level].enemyDropSpeed = 0.2f;
 	mLevelSettings[level].timeBetweenBombs = 1.9f;
 	mLevelSettings[level].validPowerUps.append(PowerUpTypes::RapidFire);
-	mLevelSettings[level].music = "Gameplay2.mp3";
+	mLevelSettings[level].music = "Gameplay2.ogg";
 	mLevelSettings[level].targetTimeInSeconds = 240;
 	mLevelSettings[level].startPosition = QVector3D(64.0f, 4.0f, 96.0f);
 
@@ -443,7 +443,7 @@ void PlayScreen::initialiseLevelSettings()
 	mLevelSettings[level].enemyDropSpeed = 0.2f;
 	mLevelSettings[level].timeBetweenBombs = 1.7f;
 	mLevelSettings[level].validPowerUps.append(PowerUpTypes::Spray);
-	mLevelSettings[level].music = "Gameplay1.mp3";
+	mLevelSettings[level].music = "Gameplay1.ogg";
 	mLevelSettings[level].targetTimeInSeconds = 300;
 	mLevelSettings[level].startPosition = QVector3D(64.0f, 4.0f, 96.0f);
 
@@ -454,7 +454,7 @@ void PlayScreen::initialiseLevelSettings()
 	mLevelSettings[level].timeBetweenBombs = 1.5f;
 	mLevelSettings[level].validPowerUps.append(PowerUpTypes::RapidFire);
 	mLevelSettings[level].validPowerUps.append(PowerUpTypes::Spray);
-	mLevelSettings[level].music = "Gameplay2.mp3";
+	mLevelSettings[level].music = "Gameplay2.ogg";
 	mLevelSettings[level].targetTimeInSeconds = 300;
 	mLevelSettings[level].startPosition = QVector3D(64.0f, 4.0f, 96.0f);
 
@@ -465,7 +465,7 @@ void PlayScreen::initialiseLevelSettings()
 	mLevelSettings[level].timeBetweenBombs = 1.3f;
 	mLevelSettings[level].validPowerUps.append(PowerUpTypes::RapidFire);
 	mLevelSettings[level].validPowerUps.append(PowerUpTypes::Spray);
-	mLevelSettings[level].music = "Gameplay1.mp3";
+	mLevelSettings[level].music = "Gameplay1.ogg";
 	mLevelSettings[level].targetTimeInSeconds = 300;
 	mLevelSettings[level].startPosition = QVector3D(64.0f, 4.0f, 96.0f);
 
@@ -475,7 +475,7 @@ void PlayScreen::initialiseLevelSettings()
 	mLevelSettings[level].enemyDropSpeed = 0.35f;
 	mLevelSettings[level].timeBetweenBombs = 1.1f;
 	mLevelSettings[level].validPowerUps.append(PowerUpTypes::Railgun);
-	mLevelSettings[level].music = "Gameplay2.mp3";
+	mLevelSettings[level].music = "Gameplay2.ogg";
 	mLevelSettings[level].targetTimeInSeconds = 300;
 	mLevelSettings[level].startPosition = QVector3D(32.0f, 4.0f, 96.0f);
 
@@ -487,7 +487,7 @@ void PlayScreen::initialiseLevelSettings()
 	mLevelSettings[level].validPowerUps.append(PowerUpTypes::RapidFire);
 	mLevelSettings[level].validPowerUps.append(PowerUpTypes::Spray);
 	mLevelSettings[level].validPowerUps.append(PowerUpTypes::Railgun);
-	mLevelSettings[level].music = "Gameplay1.mp3";
+	mLevelSettings[level].music = "Gameplay1.ogg";
 	mLevelSettings[level].targetTimeInSeconds = 300;
 	mLevelSettings[level].startPosition = QVector3D(32.0f, 4.0f, 96.0f);
 
@@ -499,7 +499,7 @@ void PlayScreen::initialiseLevelSettings()
 	mLevelSettings[level].validPowerUps.append(PowerUpTypes::RapidFire);
 	mLevelSettings[level].validPowerUps.append(PowerUpTypes::Spray);
 	mLevelSettings[level].validPowerUps.append(PowerUpTypes::Railgun);
-	mLevelSettings[level].music = "Gameplay2.mp3";
+	mLevelSettings[level].music = "Gameplay2.ogg";
 	mLevelSettings[level].targetTimeInSeconds = 300;
 	mLevelSettings[level].startPosition = QVector3D(32.0f, 4.0f, 96.0f);
 
@@ -511,7 +511,7 @@ void PlayScreen::initialiseLevelSettings()
 	mLevelSettings[level].validPowerUps.append(PowerUpTypes::RapidFire);
 	mLevelSettings[level].validPowerUps.append(PowerUpTypes::Spray);
 	mLevelSettings[level].validPowerUps.append(PowerUpTypes::Railgun);
-	mLevelSettings[level].music = "Gameplay1.mp3";
+	mLevelSettings[level].music = "Gameplay1.ogg";
 	mLevelSettings[level].targetTimeInSeconds = 300;
 	mLevelSettings[level].startPosition = QVector3D(64.0f, 4.0f, 96.0f);
 
@@ -523,7 +523,7 @@ void PlayScreen::initialiseLevelSettings()
 	mLevelSettings[level].validPowerUps.append(PowerUpTypes::RapidFire);
 	mLevelSettings[level].validPowerUps.append(PowerUpTypes::Spray);
 	mLevelSettings[level].validPowerUps.append(PowerUpTypes::Railgun);
-	mLevelSettings[level].music = "Gameplay2.mp3";
+	mLevelSettings[level].music = "Gameplay2.ogg";
 	mLevelSettings[level].targetTimeInSeconds = 300;
 	mLevelSettings[level].startPosition = QVector3D(64.0f, 4.0f, 96.0f);
 
@@ -535,7 +535,7 @@ void PlayScreen::initialiseLevelSettings()
 	mLevelSettings[level].validPowerUps.append(PowerUpTypes::RapidFire);
 	mLevelSettings[level].validPowerUps.append(PowerUpTypes::Spray);
 	mLevelSettings[level].validPowerUps.append(PowerUpTypes::Railgun);
-	mLevelSettings[level].music = "Gameplay1.mp3";
+	mLevelSettings[level].music = "Gameplay1.ogg";
 	mLevelSettings[level].targetTimeInSeconds = 300;
 	mLevelSettings[level].startPosition = QVector3D(64.0f, 4.0f, 96.0f);
 
@@ -547,7 +547,7 @@ void PlayScreen::initialiseLevelSettings()
 	mLevelSettings[level].validPowerUps.append(PowerUpTypes::RapidFire);
 	mLevelSettings[level].validPowerUps.append(PowerUpTypes::Spray);
 	mLevelSettings[level].validPowerUps.append(PowerUpTypes::Railgun);
-	mLevelSettings[level].music = "Gameplay2.mp3";
+	mLevelSettings[level].music = "Gameplay2.ogg";
 	mLevelSettings[level].targetTimeInSeconds = 300;
 	mLevelSettings[level].startPosition = QVector3D(64.0f, 4.0f, 96.0f);
 
@@ -559,7 +559,7 @@ void PlayScreen::initialiseLevelSettings()
 	mLevelSettings[level].validPowerUps.append(PowerUpTypes::RapidFire);
 	mLevelSettings[level].validPowerUps.append(PowerUpTypes::Spray);
 	mLevelSettings[level].validPowerUps.append(PowerUpTypes::Railgun);
-	mLevelSettings[level].music = "Gameplay1.mp3";
+	mLevelSettings[level].music = "Gameplay1.ogg";
 	mLevelSettings[level].targetTimeInSeconds = 300;
 	mLevelSettings[level].startPosition = QVector3D(64.0f, 4.0f, 96.0f);
 
@@ -571,7 +571,7 @@ void PlayScreen::initialiseLevelSettings()
 	mLevelSettings[level].validPowerUps.append(PowerUpTypes::RapidFire);
 	mLevelSettings[level].validPowerUps.append(PowerUpTypes::Spray);
 	mLevelSettings[level].validPowerUps.append(PowerUpTypes::Railgun);
-	mLevelSettings[level].music = "Gameplay2.mp3";
+	mLevelSettings[level].music = "Gameplay2.ogg";
 	mLevelSettings[level].targetTimeInSeconds = 300;
 	mLevelSettings[level].startPosition = QVector3D(32.0f, 4.0f, 96.0f);
 
@@ -583,7 +583,7 @@ void PlayScreen::initialiseLevelSettings()
 	mLevelSettings[level].validPowerUps.append(PowerUpTypes::RapidFire);
 	mLevelSettings[level].validPowerUps.append(PowerUpTypes::Spray);
 	mLevelSettings[level].validPowerUps.append(PowerUpTypes::Railgun);
-	mLevelSettings[level].music = "Gameplay1.mp3";
+	mLevelSettings[level].music = "Gameplay1.ogg";
 	mLevelSettings[level].targetTimeInSeconds = 300;
 	mLevelSettings[level].startPosition = QVector3D(32.0f, 4.0f, 96.0f);
 
@@ -595,7 +595,7 @@ void PlayScreen::initialiseLevelSettings()
 	mLevelSettings[level].validPowerUps.append(PowerUpTypes::RapidFire);
 	mLevelSettings[level].validPowerUps.append(PowerUpTypes::Spray);
 	mLevelSettings[level].validPowerUps.append(PowerUpTypes::Railgun);
-	mLevelSettings[level].music = "Gameplay2.mp3";
+	mLevelSettings[level].music = "Gameplay2.ogg";
 	mLevelSettings[level].targetTimeInSeconds = 300;
 	mLevelSettings[level].startPosition = QVector3D(32.0f, 4.0f, 96.0f);
 
@@ -607,7 +607,7 @@ void PlayScreen::initialiseLevelSettings()
 	mLevelSettings[level].validPowerUps.append(PowerUpTypes::RapidFire);
 	mLevelSettings[level].validPowerUps.append(PowerUpTypes::Spray);
 	mLevelSettings[level].validPowerUps.append(PowerUpTypes::Railgun);
-	mLevelSettings[level].music = "Gameplay1.mp3";
+	mLevelSettings[level].music = "Gameplay1.ogg";
 	mLevelSettings[level].targetTimeInSeconds = 300;
 	mLevelSettings[level].startPosition = QVector3D(64.0f, 4.0f, 96.0f);
 }

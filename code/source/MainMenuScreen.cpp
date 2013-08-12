@@ -379,6 +379,6 @@ void MainMenuScreen::startPlayingSong(void)
 {
 	if(mTankWarsViewWidget->mCurrentScreen == this) //Avoid problems when quickly jumping between screens.
 	{
-		qApp->mMusicPlayer->playSong("Mainmenu.mp3");
+		qApp->mMusicPlayer->playSong("Mainmenu.ogg");
 	}
 }

@@ -199,7 +199,7 @@ void HighScoreScreen::initialise()
 	}
 
 	//Play music
-	qApp->mMusicPlayer->playSong("Highscores.mp3");
+	qApp->mMusicPlayer->playSong("Highscores.ogg");
 
 	cameraFocusPoint = QVector3D(64, 40, 64);
 }
