@@ -138,7 +138,7 @@ namespace Thermite
 		//Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 
 		//Some Ogre related stuff we need to set up
-		//Ogre::Root::getSingletonPtr()->addMovableObjectFactory(new SurfacePatchRenderableFactory);
+		Ogre::Root::getSingletonPtr()->addMovableObjectFactory(new SurfacePatchRenderableFactory);
 		VolumeManager* vm = new VolumeManager;
 		vm->m_pProgressListener = new VolumeSerializationProgressListenerImpl();
 
