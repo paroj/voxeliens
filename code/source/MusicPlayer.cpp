@@ -30,44 +30,45 @@ freely, subject to the following restrictions:
 #include "TankWarsApplication.h"
 
 MusicPlayer::MusicPlayer(QObject* parent)
-	:QObject(parent)
-	,mMediaObject(0)
+	:QObject(parent),
+	music(nullptr)
 {
-	mMediaObject = new Phonon::MediaObject(this);
-	mAudioOutput = new Phonon::AudioOutput(Phonon::MusicCategory, this);
-	mPath = Phonon::createPath(mMediaObject, mAudioOutput);
 
 	connect(&mFadeMusicTimer, SIGNAL(timeout()), this, SLOT(fadeMusic()));
 }
 
-void MusicPlayer::playSong(const QString& name)
+MusicPlayer::~MusicPlayer()
 {
-	if(mMediaObject && mAudioOutput)
-	{
-		mFadeMusicTimer.stop(); //Make sure we are not still fading
-		stopSong();
-
-		QString fullPath = mDirectory + name;
-		mMediaObject->setCurrentSource(Phonon::MediaSource(fullPath));
-		setVolume(1.0);
-		mMediaObject->play();
-	}
+	stopSong();
 }
 
-void MusicPlayer::fadeOffSong(void)
+void MusicPlayer::playSong(const QString& name)
 {
-	if(mMediaObject && mAudioOutput)
+	mFadeMusicTimer.stop(); //Make sure we are not still fading
+	stopSong();
+	
+	QString fullPath = mDirectory + name;
+	music = Mix_LoadMUS(fullPath.toLatin1().data());
+	Mix_PlayMusic(music, 0);
+	Mix_HookMusicFinished(NULL);
+}
+
+void MusicPlayer::fadeOffSong()
+{
+	if(music)
 	{
 		mFadeMusicTimer.setInterval(100);
 		mFadeMusicTimer.start();
 	}
 }
 
-void MusicPlayer::stopSong(void)
+void MusicPlayer::stopSong()
 {
-	if(mMediaObject && mAudioOutput)
+	if(music)
 	{
-		mMediaObject->stop();
+		Mix_HaltMusic();
+		Mix_FreeMusic(music);
+		music = nullptr;
 	}
 }
 
@@ -78,34 +79,22 @@ void MusicPlayer::setDirectory(const QString& directory)
 
 void MusicPlayer::setVolume(qreal newVolume)
 {
-	if(mMediaObject && mAudioOutput)
+	if(music)
 	{
-		mAudioOutput->setVolume(newVolume);
+		Mix_VolumeMusic(newVolume*255.0);
 	}
 }
 
-qreal MusicPlayer::volume(void)
+qreal MusicPlayer::volume()
 {
-	if(mMediaObject && mAudioOutput)
+	if(music)
 	{
-		return mAudioOutput->volume();
+		return Mix_VolumeMusic(-1)/255.0;
 	}
 	return 0.0f;
 }
 
 void MusicPlayer::fadeMusic(void)
 {
-	if(mMediaObject && mAudioOutput)
-	{
-		qreal volume = qApp->mMusicPlayer->volume();
-		if(volume > 0.01)
-		{
-			volume -= 0.05;
-			qApp->mMusicPlayer->setVolume(volume);
-		}
-		else
-		{
-			mFadeMusicTimer.stop();
-		}
-	}
+	Mix_FadeOutMusic(100);
 }

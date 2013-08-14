@@ -106,8 +106,8 @@ void MainMenuScreen::initialise()
 
 	cameraFocusPoint = QVector3D(64, 16, 64);
 
-	mThudSound = Phonon::createPlayer(Phonon::GameCategory, Phonon::MediaSource(qApp->mResourcePath+"audio/effects/Thud.wav"));
-	mClickSound = Phonon::createPlayer(Phonon::GameCategory, Phonon::MediaSource(qApp->mResourcePath+"audio/effects/Click.wav"));
+	mThudSound = Mix_LoadWAV((qApp->mResourcePath+"audio/effects/Thud.wav").toLatin1().data());
+	mClickSound = Mix_LoadWAV((qApp->mResourcePath+"audio/effects/Click.wav").toLatin1().data());
 
 	//generateMap(TerrainTypes::Desert, 87987, mVolume); //Used for menu and first level of the game
 	mTankWarsViewWidget->mVolume->readFromFile(qApp->mResourcePath+"volumes/level0.vol"); //Used for menu and first level of the game
@@ -308,17 +308,13 @@ void MainMenuScreen::currentTextUpdated(void)
 		mCurrentText->setVisible(false);
 		mCurrentTextVisible = false;
 
-		mThudSound->stop();
-		mThudSound->seek(0);
-		mThudSound->play();
+		Mix_PlayChannel(-1, mThudSound, 0);
 	}
 }
 
 void MainMenuScreen::currentTextSelected(void)
 {
-	mClickSound->stop();
-	mClickSound->seek(0);
-	mClickSound->play();
+	Mix_PlayChannel(-1, mClickSound, 0);
 
 	if(mCurrentText == mNewGameText)
 	{

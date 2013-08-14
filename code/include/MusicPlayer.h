@@ -28,9 +28,8 @@ freely, subject to the following restrictions:
 #include <QObject>
 #include <QTimer>
 
-#include <phonon/audiooutput.h>
-#include <phonon/mediaobject.h>
-#include <phonon/path.h>
+#include <SDL.h>
+#include <SDL_mixer.h>
 
 class MusicPlayer : public QObject
 {
@@ -38,23 +37,22 @@ class MusicPlayer : public QObject
 
 public:
 	MusicPlayer(QObject * parent = 0);
+	~MusicPlayer();
 
 	void playSong(const QString& name);
-	void stopSong(void);
-	void fadeOffSong(void);
+	void stopSong();
+	void fadeOffSong();
 
 	void setDirectory(const QString& directory);
 	void setVolume(qreal newVolume);
-	qreal volume(void);
+	qreal volume();
 
 private slots:
 	void fadeMusic(void);
 
 private:
 	QString mDirectory;
-	Phonon::MediaObject*	mMediaObject;
-	Phonon::AudioOutput*	mAudioOutput;
-	Phonon::Path			mPath;
+	Mix_Music* music;
 
 	QTimer mFadeMusicTimer;
 };

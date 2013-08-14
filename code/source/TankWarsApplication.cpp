@@ -27,7 +27,7 @@ freely, subject to the following restrictions:
 
 #include <QDir>
 
-#include <phonon/mediaobject.h>
+#include <SDL.h>
 
 TankWarsApplication::TankWarsApplication(int & argc, char ** argv)
 	:Application(argc, argv)
@@ -49,6 +49,18 @@ TankWarsApplication::TankWarsApplication(int & argc, char ** argv)
 	//addResourceDirectory("./resources/");
 	addResourceDirectory(pathToResources.path());
 
+	SDL_Init(SDL_INIT_VIDEO);
+	
+	int audio_rate = 22050;
+	Uint16 audio_format = AUDIO_S16; /* 16-bit stereo */
+	int audio_channels = 2;
+	int audio_buffers = 4096;
+	
+	if(Mix_OpenAudio(audio_rate, audio_format, audio_channels, audio_buffers))
+	{
+		qWarning() << "Unable to open audio!";
+	}
+	
 	mMusicPlayer = new MusicPlayer(this);
 	//mMusicPlayer->setDirectory("./audio/music/");
 	mMusicPlayer->setDirectory(mResourcePath+"audio/music/");
@@ -57,6 +69,9 @@ TankWarsApplication::TankWarsApplication(int & argc, char ** argv)
 
 TankWarsApplication::~TankWarsApplication()
 {
+	Mix_CloseAudio();
+	SDL_Quit();
+	
 	if(mOgreWidget)
 	{
 		delete mOgreWidget;

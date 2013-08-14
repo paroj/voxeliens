@@ -34,7 +34,9 @@ freely, subject to the following restrictions:
 
 #include <QTimer>
 #include <QQueue>
-#include <phonon/mediaobject.h>
+
+#include <SDL.h>
+#include <SDL_mixer.h>
 
 #include "OgreCamera.h"
 #include "OgreVector2.h"
@@ -250,14 +252,14 @@ public:
 	float mLevelStartedTime;
 
 	//Audio
-	Phonon::MediaObject *mMissileSound;
-	//Phonon::MediaObject *mExplosionSound;
+	Mix_Chunk *mMissileSound;
+	//Mix_Chunk *mExplosionSound;
 	quint32 mNextExplosionSound;
-	Phonon::MediaObject* mExplosionSounds[NoOfExplosionSounds];
-	Phonon::MediaObject *mBombSound;
-	Phonon::MediaObject *mRailgunSound;
-	Phonon::MediaObject *mPowerupSound;
-	Phonon::MediaObject *mPowerdownSound;
+	Mix_Chunk* mExplosionSounds[NoOfExplosionSounds];
+	Mix_Chunk *mBombSound;
+	Mix_Chunk *mRailgunSound;
+	Mix_Chunk *mPowerupSound;
+	Mix_Chunk *mPowerdownSound;
 
 	Text3D* mLevelCompleteText;
 	Text3D* mTimeBonusText;

@@ -148,16 +148,16 @@ PlayScreen::PlayScreen(TankWarsViewWidget* tankWarsViewWidget)
 	mSpareLivesText->setPosition(QVector3D(107,-10, 127));
 
 	//Audio
-	mMissileSound = Phonon::createPlayer(Phonon::GameCategory, Phonon::MediaSource(qApp->mResourcePath+"audio/effects/missile.wav"));
-	mBombSound = Phonon::createPlayer(Phonon::GameCategory, Phonon::MediaSource(qApp->mResourcePath+"audio/effects/bomb.wav"));
-	mRailgunSound = Phonon::createPlayer(Phonon::GameCategory, Phonon::MediaSource(qApp->mResourcePath+"audio/effects/railgun.wav"));
-	mPowerupSound = Phonon::createPlayer(Phonon::GameCategory, Phonon::MediaSource(qApp->mResourcePath+"audio/effects/powerup.wav"));
-	mPowerdownSound = Phonon::createPlayer(Phonon::GameCategory, Phonon::MediaSource(qApp->mResourcePath+"audio/effects/powerdown.wav"));
-	//mExplosionSound = Phonon::createPlayer(Phonon::GameCategory, Phonon::MediaSource(audioDirectoryLocation+"audio/effects/explosion.wav"));
+	mMissileSound = Mix_LoadWAV((qApp->mResourcePath+"audio/effects/missile.wav").toLatin1().data());
+	mBombSound = Mix_LoadWAV((qApp->mResourcePath+"audio/effects/bomb.wav").toLatin1().data());
+	mRailgunSound = Mix_LoadWAV((qApp->mResourcePath+"audio/effects/railgun.wav").toLatin1().data());
+	mPowerupSound = Mix_LoadWAV((qApp->mResourcePath+"audio/effects/powerup.wav").toLatin1().data());
+	mPowerdownSound = Mix_LoadWAV((qApp->mResourcePath+"audio/effects/powerdown.wav").toLatin1().data());
+	//mExplosionSound = Mix_LoadWAV((audioDirectoryLocation+"audio/effects/explosion.wav").toLatin1().data());
 	mNextExplosionSound = 0;
 	for(int ct = 0; ct < NoOfExplosionSounds; ct++)
 	{
-		mExplosionSounds[ct] = Phonon::createPlayer(Phonon::GameCategory, Phonon::MediaSource(qApp->mResourcePath+"audio/effects/explosion.wav"));
+		mExplosionSounds[ct] = Mix_LoadWAV((qApp->mResourcePath+"audio/effects/explosion.wav").toLatin1().data());
 	}
 
 	//Level complete text
@@ -647,9 +647,7 @@ void PlayScreen::update()
 
 							mLastShotFiredTime = currentTimeInSeconds;
 
-							mMissileSound->stop();
-							mMissileSound->seek(0);
-							mMissileSound->play();
+							Mix_PlayChannel(-1, mMissileSound, 0);
 						}
 						break;
 					}
@@ -684,9 +682,7 @@ void PlayScreen::update()
 
 							mLastShotFiredTime = currentTimeInSeconds;
 
-							mMissileSound->stop();
-							mMissileSound->seek(0);
-							mMissileSound->play();
+							Mix_PlayChannel(-1, mMissileSound, 0);
 						}
 						break;
 					}
@@ -698,9 +694,7 @@ void PlayScreen::update()
 							mLastShotFiredTime = currentTimeInSeconds;
 							QTimer::singleShot(100, this, SLOT(finishFiringRailgun(void)));
 
-							mRailgunSound->stop();
-							mRailgunSound->seek(0);
-							mRailgunSound->play();
+							Mix_PlayChannel(-1, mRailgunSound, 0);
 						}
 						break;
 					}
@@ -715,9 +709,7 @@ void PlayScreen::update()
 
 							mLastShotFiredTime = currentTimeInSeconds;
 
-							mMissileSound->stop();
-							mMissileSound->seek(0);
-							mMissileSound->play();
+							Mix_PlayChannel(-1, mMissileSound, 0);
 
 							mLastFiredPosition = mTankObject->position();
 						}
@@ -982,9 +974,7 @@ void PlayScreen::updatePowerUps(void)
 
 				qDebug() << "Collected powerup";
 
-				mPowerupSound->stop();
-				mPowerupSound->seek(0);
-				mPowerupSound->play();
+				Mix_PlayChannel(-1, mPowerupSound, 0);
 			}
 		}
 	}
@@ -1117,9 +1107,7 @@ void PlayScreen::updateBombs(void)
 
 		if(pBomber)
 		{
-			mBombSound->stop();
-			mBombSound->seek(0);
-			mBombSound->play();
+			Mix_PlayChannel(-1, mBombSound, 0);
 
 			QVector3D bombOffset((++mBombOffset) % 5 - 2, 0.0, (++mBombOffset) % 5 - 2);
 
@@ -1251,8 +1239,7 @@ void PlayScreen::updateEnemyPositions(void)
 
 					enemyObject->mComponent->setEnabled(false);
 
-					mExplosionSounds[mNextExplosionSound % NoOfExplosionSounds]->seek(0);
-					mExplosionSounds[mNextExplosionSound % NoOfExplosionSounds]->play();
+					Mix_PlayChannel(-1, mExplosionSounds[mNextExplosionSound % NoOfExplosionSounds], 0);
 					mNextExplosionSound++;
 
 					//We create the crater below where the enemy's center was to destroy more ground for following enemies.
@@ -1679,9 +1666,7 @@ void PlayScreen::clearActivePowerUp(void)
 {
 	if(mCurrentPowerUp != PowerUpTypes::Last)
 	{
-		mPowerdownSound->stop();
-		mPowerdownSound->seek(0);
-		mPowerdownSound->play();		
+		Mix_PlayChannel(-1, mPowerdownSound, 0);
 	}
 
 	mCurrentPowerUp = PowerUpTypes::Last;
@@ -1913,8 +1898,7 @@ void PlayScreen::destroyEnemy(Thermite::Object* hitEnemy, bool destroyedBySpray)
 {
 	hitEnemy->mComponent->setEnabled(false);
 
-	mExplosionSounds[mNextExplosionSound % NoOfExplosionSounds]->seek(0);
-	mExplosionSounds[mNextExplosionSound % NoOfExplosionSounds]->play();
+	Mix_PlayChannel(-1, mExplosionSounds[mNextExplosionSound % NoOfExplosionSounds], 0);
 	mNextExplosionSound++;
 
 	Fireball* fireball = findDisabledFireball(false);
@@ -1976,8 +1960,7 @@ void PlayScreen::destroyGround(const QVector3D& position)
 	fireball->explosionAge = 0.0;
 	fireball->object->mComponent->setEnabled(true);
 
-	mExplosionSounds[mNextExplosionSound % NoOfExplosionSounds]->seek(0);
-	mExplosionSounds[mNextExplosionSound % NoOfExplosionSounds]->play();
+	Mix_PlayChannel(-1, mExplosionSounds[mNextExplosionSound % NoOfExplosionSounds], 0);
 	mNextExplosionSound++;
 
 	//mTankWarsViewWidget->mVolume->createSphereAt(position, 3.0f, 0, false);

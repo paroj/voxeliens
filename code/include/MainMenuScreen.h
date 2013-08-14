@@ -30,11 +30,12 @@ freely, subject to the following restrictions:
 
 #include "Text3D.h"
 
-#include <phonon/mediaobject.h>
-
 #include <QTimer>
 
 #include "OgreAxisAlignedBox.h"
+
+#include <SDL.h>
+#include <SDL_mixer.h>
 
 class MainMenuScreen : public GameScreen
 {
@@ -82,8 +83,8 @@ private:
 	bool mFirstShowing;
 
 	//Sounds
-	Phonon::MediaObject *mThudSound;
-	Phonon::MediaObject *mClickSound;
+	Mix_Chunk* mThudSound;
+	Mix_Chunk* mClickSound;
 };
 
 #endif //MAINMENUSCREEN_H_
