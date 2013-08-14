@@ -122,7 +122,7 @@ void GameScreen::keyPressEvent(QKeyEvent* event)
 		return;
 	}
 
-	keyboard->press(event->key());
+	keyboard->press(event->nativeVirtualKey());
 }
 
 void GameScreen::keyReleaseEvent(QKeyEvent* event)
@@ -132,7 +132,7 @@ void GameScreen::keyReleaseEvent(QKeyEvent* event)
 		return;
 	}
 
-	keyboard->release(event->key());
+	keyboard->release(event->nativeVirtualKey());
 }
 
 void GameScreen::mousePressEvent(QMouseEvent* event)

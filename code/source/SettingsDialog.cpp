@@ -36,11 +36,20 @@ freely, subject to the following restrictions:
 #endif
 
 //From here: http://altdevblogaday.com/2011/10/02/i-never-managed-to-go-left-on-first-try/
+//These are called 'Keycodes' on X11
+#ifdef  _WIN32
 const quint32 ScanCodeW = 17; //TODO are these correct for Linux?
 const quint32 ScanCodeA = 30;
 const quint32 ScanCodeS = 31;
 const quint32 ScanCodeD = 32;
 const quint32 ScanCodeSpace = 57;
+#else
+const quint32 ScanCodeW = 25; //TODO are these correct for Linux?
+const quint32 ScanCodeA = 38;
+const quint32 ScanCodeS = 39;
+const quint32 ScanCodeD = 40;
+const quint32 ScanCodeSpace = 65;
+#endif
 
 QString GetKeyName(unsigned int virtualKey)
 {
@@ -81,7 +90,7 @@ int mapScanCodeToVirtualKey(int scanCode)
 #ifdef  _WIN32
 	int nativeVirtualKey = MapVirtualKey(scanCode, MAPVK_VSC_TO_VK);
 #else
-	int nativeVirtualKey = /*XKeycodeToKeysym*/XkbKeycodeToKeysym(QX11Info::display(), scanCode, 0, 0);
+	int nativeVirtualKey = XkbKeycodeToKeysym(QX11Info::display(), scanCode, 0, 0);
 #endif	
 	return nativeVirtualKey;
 }
