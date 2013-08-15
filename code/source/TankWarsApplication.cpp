@@ -34,7 +34,7 @@ TankWarsApplication::TankWarsApplication(int & argc, char ** argv)
 	,mOgreWidget(0)
 {
 	//mResourcePath = "../../resources/";
-	mResourcePath = "./resources/";
+	mResourcePath = QCoreApplication::applicationDirPath()+"/../share/games/voxeliens/";
 	QDir pathToResources(mResourcePath);
 	if(!pathToResources.exists())
 	{
