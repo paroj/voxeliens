@@ -28,14 +28,16 @@ freely, subject to the following restrictions:
 #include <QFile>
 #include <QPushButton>
 #include <QIcon>
+#include <QDir>
+#include <QScopedPointer>
 
 using namespace Thermite;
 
-QFile gLogFile("Voxeliens.log");
+QScopedPointer<QFile> gLogFile;
 
 void myMessageOutput(QtMsgType type, const char *msg)
 {
-	QTextStream stream(&gLogFile);
+	QTextStream stream(gLogFile.data());
 
 	switch (type)
 	{
@@ -59,7 +61,28 @@ void myMessageOutput(QtMsgType type, const char *msg)
 
 int main(int argc, char *argv[])
 {
-	if(gLogFile.open(QFile::WriteOnly | QFile::Text))
+	QString logFileName = "Voxeliens.log";
+	QString logFileDirectory;
+	
+	#ifdef  _WIN32
+	logFileDirectory = QCoreApplication::applicationDirPath();
+	#else
+	// http://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html
+	if(!QString(std::getenv("XDG_CACHE_HOME")).isEmpty())
+	{
+		logFileDirectory = QString(std::getenv("XDG_CACHE_HOME"))+"/VolumesOfFun/Voxeliens/";
+	}
+	else
+	{
+		logFileDirectory = QDir::homePath()+"/.cache/VolumesOfFun/Voxeliens/";
+	}
+	#endif
+	
+	gLogFile.reset(new QFile(logFileDirectory+logFileName));
+	QDir temp;
+	temp.mkpath(logFileDirectory);
+	
+	if(gLogFile->open(QFile::WriteOnly | QFile::Text))
 	{
 		qInstallMsgHandler(myMessageOutput);
 	}
