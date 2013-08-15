@@ -42,11 +42,28 @@ namespace Thermite
 		//Load the settings file. If it doesn't exist it is created.
 		mSettings = new QSettings("settings.ini", QSettings::IniFormat);
 
+		QString logFileName = "Ogre.log";
+		QString logFileDirectory;
+		
+		#ifdef  _WIN32
+		logFileDirectory = QCoreApplication::applicationDirPath();
+		#else
+		// http://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html
+		if(!QString(std::getenv("XDG_CACHE_HOME")).isEmpty())
+		{
+			logFileDirectory = QString(std::getenv("XDG_CACHE_HOME"))+"/VolumesOfFun/Voxeliens/";
+		}
+		else
+		{
+			logFileDirectory = QDir::homePath()+"/.cache/VolumesOfFun/Voxeliens/";
+		}
+		#endif
+		
 		//Create the Ogre::Root object.
 		qDebug("Creating Ogre::Root object...");
 		try
 		{
-			mRoot = new Ogre::Root("", ""); //No use for plugins.cfg - set up in code
+			mRoot = new Ogre::Root("", "", (logFileDirectory+logFileName).toLatin1().data()); //No use for plugins.cfg - set up in code
 			qDebug("Ogre::Root created successfully.");
 		}
 		catch(Ogre::Exception& e)
