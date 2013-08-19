@@ -1,5 +1,5 @@
-Voxeliens quickstart
---------------------
+Voxeliens
+---------
 
 Voxeliens is a retro-style arcade shooter for the PC,
 in which you defend your planet from waves of descending enemies.
