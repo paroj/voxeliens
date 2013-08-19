@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Voxeliens
+GenericName=Arcade Game
+Comment=A retro-style arcade shooter
+Icon=voxeliens
+Exec=${CMAKE_INSTALL_PREFIX}/bin/Voxeliens
+Path=${CMAKE_INSTALL_PREFIX}
+Categories=Game;ActionGame;ArcadeGame;
+Keywords=space;invaders;
+StartupNotify=false

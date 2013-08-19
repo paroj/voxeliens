@@ -90,9 +90,19 @@ IF(UNIX)
 	TARGET_LINK_LIBRARIES(Voxeliens ${X11_X11_LIB})
 ENDIF()
 
-install(TARGETS Voxeliens RUNTIME DESTINATION bin) #Should this be 'games' instead?
+install(TARGETS Voxeliens RUNTIME DESTINATION bin) #Should this be 'games' instead?	
 install(DIRECTORY ../audio DESTINATION share/games/voxeliens)
 install(DIRECTORY ../materials DESTINATION share/games/voxeliens)
 install(DIRECTORY ../models DESTINATION share/games/voxeliens)
 install(DIRECTORY ../volumes DESTINATION share/games/voxeliens)
 install(DIRECTORY ../voxels DESTINATION share/games/voxeliens)
+
+configure_file(../voxeliens.desktop.in ${CMAKE_CURRENT_BINARY_DIR}/voxeliens.desktop)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/voxeliens.desktop DESTINATION share/applications)
+
+install(FILES ../128.png DESTINATION share/icons/hicolor/128x128/apps RENAME voxeliens.png)
+install(FILES ../64.png DESTINATION share/icons/hicolor/64x64/apps RENAME voxeliens.png)
+install(FILES ../48.png DESTINATION share/icons/hicolor/48x48/apps RENAME voxeliens.png)
+install(FILES ../24.png DESTINATION share/icons/hicolor/24x24/apps RENAME voxeliens.png)
+install(FILES ../22.png DESTINATION share/icons/hicolor/22x22/apps RENAME voxeliens.png)
+install(FILES ../16.png DESTINATION share/icons/hicolor/16x16/apps RENAME voxeliens.png)
