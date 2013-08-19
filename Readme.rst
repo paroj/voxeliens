@@ -1,5 +1,6 @@
 Voxeliens quickstart
 --------------------
+
 The objectives of Voxeliens are to survive as many waves of enemies as possible and accumulate the highest score. The default controls are as follows:
 
 W : Move forward
