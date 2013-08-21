@@ -12,13 +12,13 @@ openSUSE:
 	``sudo zypper install make gcc-c++ cmake libqt4-devel libSDL-devel libSDL_mixer-devel libOgreMain-devel``
 
 Fedora
-	``yum install make gcc-c++ cmake qt-devel SDL-devel SDL_mixer-devel ogre-devel``
+	``sudo yum install make gcc-c++ cmake qt-devel SDL-devel SDL_mixer-devel ogre-devel``
 
 Arch
-	``pacman -S gcc make cmake ogre qt4 sdl sdl_mixer boost``
+	``sudo pacman -S gcc make cmake ogre qt4 sdl sdl_mixer boost``
 
 Debian/Ubuntu:
-	``apt-get install cmake libqt4-dev libsdl1.2-dev libsdl-mixer1.2-dev libogre-1.8-dev``
+	``sudo apt-get install cmake libqt4-dev libsdl1.2-dev libsdl-mixer1.2-dev libogre-1.8-dev``
 
 Compiling
 ---------
@@ -31,6 +31,6 @@ Once you have all the dependencies,  compiling the application should be a simpl
 	cd build
 	cmake .. # add -DCMAKE_INSTALL_PREFIX=/path/to/install to specify install prefix
 	make
-	make install
+	sudo make install
 
 and Voxeliens should be compiled and installed to the correct location.
