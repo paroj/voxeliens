@@ -7,6 +7,8 @@ The gameplay is simple and fast paced as you battle your way through different e
 
 .. image:: http://www.volumesoffun.com/wordpress/wp-content/uploads/2011/12/Screenshot0.jpg
 
+There are packages available for major Linux distributions at `the Open Build Service<>`_ and there are instruction on compiling Voxeliens yourself at `<Install.rst>`_.
+
 The objectives of Voxeliens are to survive as many waves of enemies as possible and accumulate the highest score. The default controls are as follows:
 
 W : Move forward
