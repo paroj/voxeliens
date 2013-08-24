@@ -120,7 +120,7 @@ namespace Thermite
 		PolyVox::Array<3, uint32_t> mExtractionStartedArray;
 		PolyVox::Array<3, uint32_t> mExtractionFinishedArray;
 		PolyVox::Array<3, bool> mRegionBeingExtracted;
-		PolyVox::Array<3, SurfaceMeshDecimationTask*> m_volSurfaceDecimators;
+		//PolyVox::Array<3, SurfaceMeshDecimationTask*> m_volSurfaceDecimators;
 
 		bool mIsModified;
 

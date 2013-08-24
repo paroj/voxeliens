@@ -98,6 +98,13 @@ namespace Thermite
 	Volume::~Volume(void)
 	{
 		delete m_pPolyVoxVolume;
+		for(int i=0; i < m_volSurfaceMeshes.getNoOfElements(); ++i)
+		{
+			if(m_volSurfaceMeshes.getRawData()[i] != nullptr)
+			{
+				delete m_volSurfaceMeshes.getRawData()[i];
+			}
+		}
 	}
 
 	void Volume::setPolyVoxVolume(PolyVox::SimpleVolume<PolyVox::Material16>* pPolyVoxVolume, uint16_t regionSideLength)
@@ -115,7 +122,7 @@ namespace Thermite
 		mExtractionFinishedArray.resize(dimensions); std::fill(mExtractionFinishedArray.getRawData(), mExtractionFinishedArray.getRawData() + mExtractionFinishedArray.getNoOfElements(), 0);
 		m_volSurfaceMeshes.resize(dimensions); std::fill(m_volSurfaceMeshes.getRawData(), m_volSurfaceMeshes.getRawData() + m_volSurfaceMeshes.getNoOfElements(), nullptr);
 		mRegionBeingExtracted.resize(dimensions); std::fill(mRegionBeingExtracted.getRawData(), mRegionBeingExtracted.getRawData() + mRegionBeingExtracted.getNoOfElements(), 0);
-		m_volSurfaceDecimators.resize(dimensions); std::fill(m_volSurfaceDecimators.getRawData(), m_volSurfaceDecimators.getRawData() + m_volSurfaceDecimators.getNoOfElements(), nullptr);
+		//m_volSurfaceDecimators.resize(dimensions); std::fill(m_volSurfaceDecimators.getRawData(), m_volSurfaceDecimators.getRawData() + m_volSurfaceDecimators.getNoOfElements(), nullptr);
 	}
 
 	void Volume::initialise(void)
@@ -298,7 +305,7 @@ namespace Thermite
 
 		delete pTask;
 		
-		m_volSurfaceDecimators[regionX][regionY][regionZ] = surfaceMeshDecimationTask;
+		//m_volSurfaceDecimators[regionX][regionY][regionZ] = surfaceMeshDecimationTask;
 
 		//m_backgroundThread->addTask(surfaceMeshDecimationTask);
 	}
