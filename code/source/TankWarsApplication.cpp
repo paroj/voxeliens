@@ -49,7 +49,7 @@ TankWarsApplication::TankWarsApplication(int & argc, char ** argv)
 	//addResourceDirectory("./resources/");
 	addResourceDirectory(pathToResources.path());
 
-	SDL_Init(SDL_INIT_VIDEO);
+	SDL_Init(SDL_INIT_AUDIO);
 	
 	int audio_rate = 22050;
 	Uint16 audio_format = AUDIO_S16; /* 16-bit stereo */
