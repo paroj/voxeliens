@@ -41,6 +41,13 @@ MainMenuScreen::MainMenuScreen(TankWarsViewWidget* tankWarsViewWidget)
 	mFirstShowing = true;
 }
 
+MainMenuScreen::~MainMenuScreen()
+{
+	Mix_HaltChannel(-1);
+	Mix_FreeChunk(mThudSound);
+	Mix_FreeChunk(mClickSound);
+}
+
 void MainMenuScreen::initialise()
 {
 	qDebug() << "MainMenuScreen::initialise()";

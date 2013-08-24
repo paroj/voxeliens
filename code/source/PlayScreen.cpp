@@ -248,6 +248,16 @@ PlayScreen::~PlayScreen()
 
 	delete mBlankCursor;
 	mBlankCursor = 0;
+	
+	Mix_FreeChunk(mMissileSound);
+	Mix_FreeChunk(mBombSound);
+	Mix_FreeChunk(mRailgunSound);
+	Mix_FreeChunk(mPowerupSound);
+	Mix_FreeChunk(mPowerdownSound);
+	for(int ct = 0; ct < NoOfExplosionSounds; ct++)
+	{
+		Mix_FreeChunk(mExplosionSounds[ct]);
+	}
 }
 
 void PlayScreen::initialise()

@@ -43,6 +43,7 @@ class MainMenuScreen : public GameScreen
 
 public:
 	MainMenuScreen(TankWarsViewWidget* tankWarsViewWidget);
+	~MainMenuScreen();
 
 	virtual void initialise();
 	virtual void update();
