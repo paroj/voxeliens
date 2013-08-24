@@ -112,9 +112,9 @@ namespace Thermite
 		mLastModifiedArray.resize(dimensions); std::fill(mLastModifiedArray.getRawData(), mLastModifiedArray.getRawData() + mLastModifiedArray.getNoOfElements(), globals.timeStamp());
 		mExtractionStartedArray.resize(dimensions); std::fill(mExtractionStartedArray.getRawData(), mExtractionStartedArray.getRawData() + mExtractionStartedArray.getNoOfElements(), 0);
 		mExtractionFinishedArray.resize(dimensions); std::fill(mExtractionFinishedArray.getRawData(), mExtractionFinishedArray.getRawData() + mExtractionFinishedArray.getNoOfElements(), 0);
-		m_volSurfaceMeshes.resize(dimensions); std::fill(m_volSurfaceMeshes.getRawData(), m_volSurfaceMeshes.getRawData() + m_volSurfaceMeshes.getNoOfElements(), (SurfaceMesh<PositionMaterial>*)0);
+		m_volSurfaceMeshes.resize(dimensions); std::fill(m_volSurfaceMeshes.getRawData(), m_volSurfaceMeshes.getRawData() + m_volSurfaceMeshes.getNoOfElements(), nullptr);
 		mRegionBeingExtracted.resize(dimensions); std::fill(mRegionBeingExtracted.getRawData(), mRegionBeingExtracted.getRawData() + mRegionBeingExtracted.getNoOfElements(), 0);
-		m_volSurfaceDecimators.resize(dimensions); std::fill(m_volSurfaceDecimators.getRawData(), m_volSurfaceDecimators.getRawData() + m_volSurfaceDecimators.getNoOfElements(), (Thermite::SurfaceMeshDecimationTask*)0);
+		m_volSurfaceDecimators.resize(dimensions); std::fill(m_volSurfaceDecimators.getRawData(), m_volSurfaceDecimators.getRawData() + m_volSurfaceDecimators.getNoOfElements(), nullptr);
 	}
 
 	void Volume::initialise(void)
@@ -259,7 +259,7 @@ namespace Thermite
 
 	void Volume::uploadSurfaceExtractorResult(SurfaceMeshExtractionTask* pTask)
 	{
-		SurfaceMesh<PositionMaterial>* pMesh = &(pTask->m_meshResult);
+		SurfaceMesh<PositionMaterial>* pMesh = pTask->m_meshResult;
 
 		//Determine where it came from
 		uint16_t regionX = pMesh->m_Region.getLowerCorner().getX() / mRegionSideLength;
@@ -275,6 +275,11 @@ namespace Thermite
 		}
 		
 		//pMesh->m_Region = result.getRegion();
+		if(m_volSurfaceMeshes[regionX][regionY][regionZ] != nullptr)
+		{
+			//delete the old mesh before overwriting the pointer
+			delete m_volSurfaceMeshes[regionX][regionY][regionZ];
+		}
 		m_volSurfaceMeshes[regionX][regionY][regionZ] = pMesh;
 		mExtractionFinishedArray[regionX][regionY][regionZ] = globals.timeStamp();
 
@@ -283,14 +288,15 @@ namespace Thermite
 		mRegionBeingExtracted[regionX][regionY][regionZ] = false;
 
 
-		SurfaceMeshDecimationTask* pOldSurfaceDecimator = m_volSurfaceDecimators[regionX][regionY][regionZ];
-
+		//SurfaceMeshDecimationTask* pOldSurfaceDecimator = m_volSurfaceDecimators[regionX][regionY][regionZ];
 		//m_backgroundThread->removeTask(pOldSurfaceDecimator);
 
 		SurfaceMeshDecimationTask* surfaceMeshDecimationTask = new SurfaceMeshDecimationTask(pMesh, pTask->m_uTimeStamp);
 		surfaceMeshDecimationTask->setAutoDelete(false);
 		QObject::connect(surfaceMeshDecimationTask, SIGNAL(finished(SurfaceMeshDecimationTask*)), this, SLOT(uploadSurfaceDecimatorResult(SurfaceMeshDecimationTask*)), Qt::QueuedConnection);
 
+		delete pTask;
+		
 		m_volSurfaceDecimators[regionX][regionY][regionZ] = surfaceMeshDecimationTask;
 
 		//m_backgroundThread->addTask(surfaceMeshDecimationTask);
@@ -314,7 +320,11 @@ namespace Thermite
 			return;
 		}
 
-		
+		if(m_volSurfaceMeshes[regionX][regionY][regionZ] != nullptr)
+		{
+			//delete the old mesh before overwriting the pointer
+			delete m_volSurfaceMeshes[regionX][regionY][regionZ];
+		}
 		m_volSurfaceMeshes[regionX][regionY][regionZ] = pMesh;
 		mExtractionFinishedArray[regionX][regionY][regionZ] = globals.timeStamp();
 

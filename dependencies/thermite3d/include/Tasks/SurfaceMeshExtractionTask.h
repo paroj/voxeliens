@@ -47,7 +47,7 @@ namespace Thermite
 
 	public:
 		PolyVox::Region m_regToProcess;
-		PolyVox::SurfaceMesh<PolyVox::PositionMaterial> m_meshResult;
+		PolyVox::SurfaceMesh<PolyVox::PositionMaterial>* m_meshResult;
 		PolyVox::SimpleVolume<PolyVox::Material16>* mVolume;
 		uint32_t m_uTimeStamp;
 	};
