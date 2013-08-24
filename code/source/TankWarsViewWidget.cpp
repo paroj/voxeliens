@@ -114,6 +114,12 @@ TankWarsViewWidget::~TankWarsViewWidget()
 	
 	mVoxeliensSettings->sync();
 	delete mVoxeliensSettings;
+	
+	delete mMainMenuScreen;
+	delete mHighScoreScreen;
+	delete mPlayScreen;
+	delete mPausedScreen;
+	delete mVolume;
 }
 
 void TankWarsViewWidget::initialise(void)

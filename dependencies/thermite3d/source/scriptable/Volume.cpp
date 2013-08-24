@@ -97,6 +97,7 @@ namespace Thermite
 
 	Volume::~Volume(void)
 	{
+		delete m_pPolyVoxVolume;
 	}
 
 	void Volume::setPolyVoxVolume(PolyVox::SimpleVolume<PolyVox::Material16>* pPolyVoxVolume, uint16_t regionSideLength)
