@@ -11,7 +11,7 @@ ENDIF()
 
 #Custom modules
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules)
-FIND_PACKAGE(OGRE 1.6 REQUIRED)
+FIND_PACKAGE(OGRE 1.9 REQUIRED)
 #FIND_PACKAGE(PolyVox REQUIRED)
 
 ################################################################################
