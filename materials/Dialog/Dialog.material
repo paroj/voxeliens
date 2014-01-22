@@ -1,13 +1,14 @@
 material DialogMaterial
 {
 	technique
-	{				
+	{
 		pass
 		{
+			lighting off
 			scene_blend alpha_blend
 			texture_unit
 			{
-				texture dialog.png 2d PF_R8G8B8A8
+				texture dialog.png 0
 				tex_address_mode clamp
 			}
 		}
