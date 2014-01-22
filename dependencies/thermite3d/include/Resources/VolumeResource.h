@@ -67,15 +67,7 @@ namespace Thermite
 				return;
 
 			// lock & copy other mutex pointer
-			OGRE_LOCK_MUTEX (*r.OGRE_AUTO_MUTEX_NAME)
-				OGRE_COPY_AUTO_SHARED_MUTEX (r.OGRE_AUTO_MUTEX_NAME)
-				pRep = static_cast<VolumeResource*> (r.getPointer ());
-			pUseCount = r.useCountPointer ();
-			useFreeMethod = r.freeMethod();
-			if (pUseCount)
-			{
-				++ (*pUseCount);
-			}
+			pRep = static_cast<VolumeResource*> (r.getPointer ());
 		}
 
 		/// Operator used to convert a ResourcePtr to a VolumeResourcePtr
@@ -89,15 +81,7 @@ namespace Thermite
 				return *this;
 
 			// lock & copy other mutex pointer
-			OGRE_LOCK_MUTEX (*r.OGRE_AUTO_MUTEX_NAME)
-				OGRE_COPY_AUTO_SHARED_MUTEX(r.OGRE_AUTO_MUTEX_NAME)
-				pRep = static_cast<VolumeResource*> (r.getPointer());
-			pUseCount = r.useCountPointer ();
-			useFreeMethod = r.freeMethod();
-			if (pUseCount)
-			{
-				++ (*pUseCount);
-			}
+			pRep = static_cast<VolumeResource*> (r.getPointer());
 			return *this;
 		}
 	};
