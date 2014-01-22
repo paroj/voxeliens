@@ -61,12 +61,12 @@ namespace Thermite
 	VolumeResourcePtr VolumeManager::load (const Ogre::String &name, const Ogre::String &group)
 	{
 		Ogre::LogManager::getSingleton().logMessage("DAVID - calling getByName");
-		VolumeResourcePtr textf = getByName (name);
+		VolumeResourcePtr textf = getResourceByName(name);
 		Ogre::LogManager::getSingleton().logMessage("DAVID - done getByName");
 
 		if (textf.isNull ())
 		{
-			textf = create (name, group);
+			textf = createResource(name, group);
 		}
 
 		textf->load ();

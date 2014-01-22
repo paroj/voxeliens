@@ -60,12 +60,12 @@ namespace Thermite
 	TextResourcePtr TextManager::load (const Ogre::String &name, const Ogre::String &group)
 	{
 		Ogre::LogManager::getSingleton().logMessage("DAVID - calling getByName");
-		TextResourcePtr textf = getByName (name);
+		TextResourcePtr textf = getResourceByName(name);
 		Ogre::LogManager::getSingleton().logMessage("DAVID - done getByName");
 
 		if (textf.isNull ())
 		{
-			textf = create (name, group);
+			textf = createResource(name, group);
 		}
 
 		textf->load ();
