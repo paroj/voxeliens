@@ -21,29 +21,29 @@ Features
 
 Download
 --------
-**Windows**
+* **Windows:** You can get Voxeliens for Windows from our `download page <https://bitbucket.org/volumesoffun/voxeliens/downloads>`_.
 
-You can get Voxeliens for Windows from our `download page <https://bitbucket.org/volumesoffun/voxeliens/downloads>`_.
+* **Linux:** We do not have pre-built binaries for Linux so you will need to compile yourself from source. You can find instructions for this at  `Install.rst <https://bitbucket.org/volumesoffun/voxeliens/src/master/Install.rst>`_.
 
-**Linux**
+|
 
-There are packages available for major Linux distributions at `the Open Build Service<>`_ and there are instruction on compiling Voxeliens yourself at `Install.rst <https://bitbucket.org/volumesoffun/voxeliens/src/master/Install.rst>`_.
-
+Playing the game
+----------------
 The objectives of Voxeliens are to survive as many waves of enemies as possible and accumulate the highest score. The default controls are as follows:
 
-W : Move forward
+* **W:** Move forward
 
-S : Move back
+* **S:** Move back
 
-A : Move left
+* **A:** Move left
 
-D : Move right
+* **D:** Move right
 
-Mouse movement: Rotate camera
+* **Mouse movement:** Rotate camera
 
-Mouse click: Fire cannon
+* **Mouse click:** Fire cannon
 
-**In addition be aware of the following:**
+In addition be aware of the following:
 	- Powerups can be collected for better weapons.
 	- An extra life will be gained for every 10,000 points.
 	- Bonuses are awarded for completing a level quickly.
