@@ -22,7 +22,7 @@ Download
 --------
 * **Windows:** You can get Voxeliens for Windows from our `download page <https://bitbucket.org/volumesoffun/voxeliens/downloads>`_.
 
-* **Linux:** We do not have pre-built binaries for Linux so you will need to compile yourself from source. You can find instructions for this at  `Install.rst <https://bitbucket.org/volumesoffun/voxeliens/src/master/Install.rst>`_.
+* **Linux:** We do not have pre-built binaries for Linux so you will need to compile yourself from source. You can find instructions for this at  `Install.rst <https://bitbucket.org/volumesoffun/voxeliens/src/master/Install.rst>`_. Be aware that compiling may be difficult (especially on Windows) as this game was developed as a commercial project and only limited work was put into making it compile on other systems.
 
 Playing the game
 ----------------
