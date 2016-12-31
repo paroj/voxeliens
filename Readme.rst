@@ -47,3 +47,5 @@ In addition be aware of the following:
 	- Enemies will descend and can crash into hills/trees, but this will cost you points.
 
 Have fun!
+
+.. image:: media/AllScreenshots.png
