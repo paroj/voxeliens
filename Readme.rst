@@ -1,11 +1,20 @@
 Voxeliens
 ---------
 
-Voxeliens is a retro-style arcade shooter for the PC,
-in which you defend your planet from waves of descending enemies.
-The gameplay is simple and fast paced as you battle your way through different environments using a variety of powerups.
+Voxeliens is a retro-style arcade shooter for the PC, in which you defend your planet from waves of descending enemies. The gameplay is simple and fast paced as you battle your way through different environments using a variety of powerups. Think Space Invaders would have been better in 3D? You’re right, so download Voxeliens for free and play today!
 
-.. image:: http://www.volumesoffun.com/wordpress/wp-content/uploads/2011/12/Screenshot0.jpg
+|
+
+.. image:: media/youtube.png
+
+|
+
+Features:
+
+* Simple and fast-paced gameplay. Test your trigger finger and save the planet!
+* Attractive voxel-based graphics capture the retro gaming spirit.
+* Available for all recent versions of Windows (early Linux version).
+* Everything ‘Space Invaders’ wishes it could have been!
 
 There are packages available for major Linux distributions at `the Open Build Service<>`_ and there are instruction on compiling Voxeliens yourself at `Install.rst <https://bitbucket.org/volumesoffun/voxeliens/src/master/Install.rst>`_.
 
