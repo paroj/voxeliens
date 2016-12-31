@@ -7,8 +7,6 @@ Voxeliens is a retro-style arcade shooter for the PC, in which you defend your p
 
 .. image:: media/youtube.png
 
-|
-
 Features
 --------
 
@@ -17,15 +15,11 @@ Features
 * Available for all recent versions of Windows (early Linux version).
 * Everything ‘Space Invaders’ wishes it could have been!
 
-|
-
 Download
 --------
 * **Windows:** You can get Voxeliens for Windows from our `download page <https://bitbucket.org/volumesoffun/voxeliens/downloads>`_.
 
 * **Linux:** We do not have pre-built binaries for Linux so you will need to compile yourself from source. You can find instructions for this at  `Install.rst <https://bitbucket.org/volumesoffun/voxeliens/src/master/Install.rst>`_.
-
-|
 
 Playing the game
 ----------------
