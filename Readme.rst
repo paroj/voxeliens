@@ -46,6 +46,10 @@ In addition be aware of the following:
 	- Bonuses are awarded for completing a level quickly.
 	- Enemies will descend and can crash into hills/trees, but this will cost you points.
 
-Have fun!
+License and credits
+-------------------
+Voxeliens is released as open-source software under `the MIT license <License.txt>`_. You can see `the credits <Credits.txt>`_ for a list of the people, software, and resources involved in making the game.
 
+Screenshots
+-----------
 .. image:: media/AllScreenshots.png
