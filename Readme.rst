@@ -7,6 +7,7 @@ Voxeliens is a retro-style arcade shooter for the PC, in which you defend your p
 
 .. image:: media/YouTubeAndVoxeliens.png
     :target: https://youtu.be/QiA0OxKeKto
+    :alt: View the trailer on YouTube
 
 |
 
