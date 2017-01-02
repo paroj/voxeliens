@@ -49,7 +49,9 @@ In addition be aware of the following:
 
 License and credits
 -------------------
-Voxeliens is released as open-source software under `the MIT license <License.txt>`_. You can see `the credits <Credits.txt>`_ for a list of the people, software, and resources involved in making the game.
+Voxeliens is released as open-source software under `the MIT license <License.txt>`_. Note that the license contained in the prebuilt binaries is actually the previous commercial license as we don't want to rebuild and retest these packages, but you can disregard this.
+
+You can see `the credits <Credits.txt>`_ for a list of the people, software, and resources involved in making the game.
 
 Screenshots
 -----------
