@@ -34,6 +34,7 @@ freely, subject to the following restrictions:
 #include "SettingsDialog.h"
 #include "TankWarsApplication.h"
 #include "TankWarsViewWidget.h"
+#include <OgreRay.h>
 
 MainMenuScreen::MainMenuScreen(TankWarsViewWidget* tankWarsViewWidget)
 	:GameScreen(tankWarsViewWidget)

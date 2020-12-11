@@ -24,6 +24,7 @@ freely, subject to the following restrictions:
 #ifndef KEYBOARD_H_
 #define KEYBOARD_H_
 
+#include <QObject>
 #include <QHash>
 
 class Keyboard : public QObject

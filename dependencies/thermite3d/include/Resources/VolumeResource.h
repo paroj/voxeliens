@@ -67,21 +67,21 @@ namespace Thermite
 				return;
 
 			// lock & copy other mutex pointer
-			pRep = static_cast<VolumeResource*> (r.getPointer ());
+			reset(static_cast<VolumeResource*> (r.getPointer ()));
 		}
 
 		/// Operator used to convert a ResourcePtr to a VolumeResourcePtr
 		VolumeResourcePtr& operator=(const Ogre::ResourcePtr& r)
 		{
-			if (pRep == static_cast<VolumeResource*> (r.getPointer ()))
+			if (get() == static_cast<VolumeResource*> (r.getPointer ()))
 				return *this;
-			release ();
+			reset ();
 
 			if(r.isNull())
 				return *this;
 
 			// lock & copy other mutex pointer
-			pRep = static_cast<VolumeResource*> (r.getPointer());
+			reset(static_cast<VolumeResource*> (r.getPointer()));
 			return *this;
 		}
 	};

@@ -133,13 +133,11 @@ namespace Thermite
 		bool useDirect3D9 = !useOpenGL;
 
 		Ogre::String rendererName = useOpenGL ? "OpenGL Rendering Subsystem" : "Direct3D9 Rendering Subsystem";
-		Ogre::String pluginName = useOpenGL ? "/usr/lib64/OGRE/RenderSystem_GL" : "./RenderSystem_Direct3D9";
+		Ogre::String pluginName = useOpenGL ? "/usr/local/lib/OGRE/RenderSystem_GL" : "./RenderSystem_Direct3D9";
+
+		mRoot->loadPlugin("/usr/local/lib/OGRE/Codec_STBI");
 
 		assert(useOpenGL || useDirect3D9);
-
-#ifdef QT_DEBUG
-		Ogre::String pluginName = pluginName + "_d");
-#endif
 
 		try
 		{

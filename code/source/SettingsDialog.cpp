@@ -90,7 +90,7 @@ int mapScanCodeToVirtualKey(int scanCode)
 #ifdef  _WIN32
 	int nativeVirtualKey = MapVirtualKey(scanCode, MAPVK_VSC_TO_VK);
 #else
-	int nativeVirtualKey = XkbKeycodeToKeysym(QX11Info::display(), scanCode, 0, 0);
+	int nativeVirtualKey = scanCode;//XkbKeycodeToKeysym(QX11Info::display(), scanCode, 0, 0);
 #endif	
 	return nativeVirtualKey;
 }

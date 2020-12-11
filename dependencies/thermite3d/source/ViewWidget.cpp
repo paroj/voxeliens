@@ -31,7 +31,6 @@
 #include <QSettings>
 #include <QThreadPool>
 #include <QTimer>
-#include <QUiLoader>
 #include <QWaitCondition>
 
 #include <qmath.h>
@@ -150,7 +149,7 @@ namespace Thermite
 
 		//Note: Shadow caster material is actually broken for the
 		//fireballs, but we don't really want them to cast shadows anyway.
-		mOgreSceneManager->setShadowTextureCasterMaterial("ShadowCasterMaterial");
+		mOgreSceneManager->setShadowTextureCasterMaterial(Ogre::MaterialManager::getSingleton().getByName("ShadowCasterMaterial"));
 
 		/*mLogManager = new LogManager(this);
 		mMainLog = mLogManager->createLog("Main");

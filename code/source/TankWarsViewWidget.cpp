@@ -59,7 +59,6 @@ freely, subject to the following restrictions:
 #include <QSettings>
 #include <QThreadPool>
 #include <QTimer>
-#include <QUiLoader>
 #include <QUrl>
 #include <QWaitCondition>
 

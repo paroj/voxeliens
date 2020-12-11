@@ -5,6 +5,7 @@
 #include <OgreRenderWindow.h>
 #include <OgreRoot.h>
 #include <OgreStringConverter.h>
+#include <OgreViewport.h>
 
 #include <QSettings>
 
@@ -93,7 +94,7 @@ namespace Thermite
 		bool bSupportsFSAA2X = false;
 		bool bSupportsFSAA4X = false;
 		Ogre::RenderSystem* renderSystem = Ogre::Root::getSingletonPtr()->getRenderSystem();
-		Ogre::ConfigOption fsaaOptions = renderSystem->getConfigOptions()["FSAA"];		
+		Ogre::ConfigOption fsaaOptions = renderSystem->getConfigOptions().at("FSAA");		
 		for(int ct = 0; ct < fsaaOptions.possibleValues.size(); ct++)
 		{
 			std::string value = fsaaOptions.possibleValues[ct];

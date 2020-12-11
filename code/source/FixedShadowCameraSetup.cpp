@@ -20,10 +20,10 @@ freely, subject to the following restrictions:
    3. This notice may not be removed or altered from any source
    distribution.
 *******************************************************************************/
+#include <Ogre.h>
 
 #include "FixedShadowCameraSetup.h"
 
-#include "OgreSceneManager.h"
 
 using namespace Ogre;
 
